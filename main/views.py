@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.forms import ModelForm
+from django.contrib import messages
 from main.models import Blog
 
 class BlogForm(ModelForm):
@@ -17,6 +18,7 @@ def detail(request, blog_id):
 def delete(request, blog_id):
 	post = get_object_or_404(Blog, pk=blog_id)
 	post.delete()
+	messages.success(request, 'Post was deleted.')
 	return redirect('index')
 
 def update(request, blog_id, template_name = 'main/form.html'):
@@ -24,6 +26,7 @@ def update(request, blog_id, template_name = 'main/form.html'):
 	form = BlogForm(request.POST or None, instance=post)
 	if form.is_valid():
 		form.save()
+		messages.success(request, 'Post was updated.')
 		return redirect('index')
 	return render(request, template_name, {'form':form})
 
@@ -31,5 +34,6 @@ def create(request, template_name = 'main/form.html'):
 	form = BlogForm(request.POST or None)
 	if form.is_valid():
 		form.save()
+		messages.success(request, 'Post was created.')
 		return redirect('index')
 	return render(request, template_name,{'form':form})
