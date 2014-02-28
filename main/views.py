@@ -18,7 +18,7 @@ def detail(request, blog_id):
 def delete(request, blog_id):
 	post = get_object_or_404(Blog, pk=blog_id)
 	post.delete()
-	messages.success(request, 'Post was deleted.')
+	messages.success(request, 'Post has been deleted')
 	return redirect('index')
 
 def update(request, blog_id, template_name = 'main/form.html'):
@@ -26,7 +26,7 @@ def update(request, blog_id, template_name = 'main/form.html'):
 	form = BlogForm(request.POST or None, instance=post)
 	if form.is_valid():
 		form.save()
-		messages.success(request, 'Post was updated.')
+		messages.success(request, 'Post has been updated')
 		return redirect('index')
 	return render(request, template_name, {'form':form})
 
@@ -34,6 +34,6 @@ def create(request, template_name = 'main/form.html'):
 	form = BlogForm(request.POST or None)
 	if form.is_valid():
 		form.save()
-		messages.success(request, 'Post was created.')
+		messages.success(request, 'Post has been created')
 		return redirect('index')
-	return render(request, template_name,{'form':form})
+	return render(request, template_name, {'form':form})

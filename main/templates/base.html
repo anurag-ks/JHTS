@@ -1,19 +1,44 @@
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-  <title>{% block title %}{% endblock %}</title>
+    {% load staticfiles %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="{% static 'main/semantic.min.css' %}">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <title>
+        J.H Tarapore School &#8729; {% block title %}{% endblock %}
+    </title>
 </head>
-<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
-  <div id="body">
+
+<body>
+    <div class="header-area">
+        <div id="wrapper" style="text-align: center">    
+            <h1> J.H Tarapore School </h1>
+        </div>
+    </div>
+
     {% block body %}
-      <div class="content_title">
-        {% block content_title %}{% endblock %}
-      </div>
-      <div class="content">
-        {% block content %}{% endblock %}
-      </div>
+        <div class="ui piled segment content">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="ui huge inverted red label">
+                        {{ message }}
+                        <i class="fa fa-times close-label"></i>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </div>
     {% endblock %}
-  </div>
+
+    <script src="{% static 'main/js/jquery.js' %}"></script>
+    <script>
+        $(function(){
+            $('.close-label').click(function(){
+                $(this).parent().fadeOut();
+            });
+        });
+    </script>
 </body>
 </html>

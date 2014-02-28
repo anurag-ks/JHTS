@@ -1,8 +1,12 @@
 {% extends "base.html" %}
+
 {% block content %}
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-</form>
-<a href="/jhts/">Cancel</a>
+	<form method="post">
+		{% csrf_token %}
+		<table>
+			{{ form.as_table }}
+		</table>
+	    <input type="submit" class="ui button green" value="Post" />
+	    <a href="{% url 'index' %}" class="ui button red">Cancel</a>
+	</form>
 {% endblock %}
