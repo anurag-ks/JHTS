@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul>
+	<h1>{{post.title}}</h1><br>
+	date published - {{post.pub_date}}
+	<li><h3>{{post.content}}</li>
+</ul>
+<a href="{% url 'delete' post.id %}">Delete</a>
+{% endblock %}
