@@ -2,11 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.forms import ModelForm
 from django.contrib import messages
 from main.models import Blog
+from django import forms
+from ckeditor.widgets import CKEditorWidget
 
 class BlogForm(ModelForm):
-    class Meta:
-        model = Blog
-
+	content = forms.CharField(widget=CKEditorWidget())
+	class Meta:
+		model = Blog
 def index(request):
 	posts = Blog.objects.all().order_by('-pub_date')[:5]
 	return render(request, 'main/index.html', {'posts': posts})

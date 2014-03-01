@@ -7,7 +7,7 @@ https://docs.djangoproject.com/en/1.6/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
-
+import tempfile
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'ckeditor'
     
 )
 
@@ -64,7 +65,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-CKEDITOR_UPLOAD_PATH = "uploads/"
+
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
@@ -86,3 +87,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(tempfile.gettempdir(), 'ck_static')
+MEDIA_ROOT = os.path.join(tempfile.gettempdir(), 'ck_media')
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Basic',
+    },
+}
