@@ -27,5 +27,13 @@
 	padding: 2em !important;
 }
 
-/* Miscellaneous */
+/* Miscellaneous and helpers */
 
+.normal-link {
+	color: black;
+}
+
+.underline {
+	border-style: solid;
+	border-width: 0 0 5px 0;
+}

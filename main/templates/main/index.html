@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1 class="ui center aligned dividing header">Notice Board</h1>
     {% if posts %}
-        <ul>
         {% for post in posts %}
-            <li>
-                <a href="{% url 'detail' post.id %}">{{ post.title }}</a>
-                <a href="{% url 'update' post.id %}">Update</a>
-            </li>
+            <div class="ui dividing header">
+                <h3 href="{% url 'detail' post.id %}">
+                    {{ post.title }}
+                </h3>
+                <a href="{% url 'update' post.id %}" class="right floated">
+                    Update
+                </a>
+            </div>
         {% endfor %}
-        </ul>
     {% else %}
-        <p>No posts available!!</p>
+        <p>No posts yet.</p>
     {% endif %}
 {% endblock %}

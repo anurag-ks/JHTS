@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<ul>
-	<h1>{{post.title}}</h1><br>
+
+<h2 class="ui dividing header">
+  	{{ post.title }}
+</h2>
+<div class="ui segment attached">
+	{{ post.content|safe }}
+</div>
+<h5 class="ui right floated bottom attached header">
 	date published - {{post.pub_date}}
-	<li><h3>{{post.content}}</li>
-</ul>
-<a href="{% url 'delete' post.id %}">Delete</a>
+</h5>
+<br> <br>
+<a href="{% url 'delete' post.id %}" class="ui red button">Delete</a>
 {% endblock %}

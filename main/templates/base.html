@@ -14,21 +14,25 @@
 <body>
     <div class="header-area">
         <div id="wrapper" style="text-align: center">    
-            <h1> J.H Tarapore School </h1>
+            <a href="{% url 'index' %}" class="normal-link">
+                <h1> J.H Tarapore School </h1>
+            </a>
         </div>
     </div>
 
+    
+    <div class="messages">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="ui huge inverted red label">
+                    {{ message }}
+                    <i class="fa fa-times close-label"></i>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
     {% block body %}
         <div class="ui piled segment content">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="ui huge inverted red label">
-                        {{ message }}
-                        <i class="fa fa-times close-label"></i>
-                    </div>
-                {% endfor %}
-            {% endif %}
-
             {% block content %}{% endblock %}
         </div>
     {% endblock %}
