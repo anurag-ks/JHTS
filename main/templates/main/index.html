@@ -5,8 +5,9 @@
     {% if posts %}
         {% for post in posts %}
             <div class="ui dividing header">
-                <h3 href="{% url 'detail' post.id %}">
+                <h3><a href="{% url 'detail' post.id %}">
                     {{ post.title }}
+                    </a>
                 </h3>
                 <a href="{% url 'update' post.id %}" class="right floated">
                     Update
