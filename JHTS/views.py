@@ -1,8 +1,10 @@
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+import sys
+sys.setrecursionlimit(10000)
 
 def loginview(request):
     c = {}
@@ -17,9 +19,7 @@ def auth_and_login(request, onsuccess='/', onfail='/login/'):
     else:
         return redirect(onfail)
 
-def user_exists(username):
-    user_count = User.objects.filter(username=username).count()
-    if user_count == 0:
-        return False
-    return True
+def logout(request):
+    logout(request)
+    return redirect("/")
 
