@@ -3,9 +3,8 @@
     {% load staticfiles %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="{% static 'main/semantic.min.css' %}">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'main/style.css' %}">
-    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
     <title>
         J.H Tarapore School &#8729; {% block title %}{% endblock %}
     </title>
@@ -13,58 +12,53 @@
 
 <body>
     <div class="header-area">
-        <div id="wrapper" style="text-align: center">    
+        <div class="centered-wrapper" style="text-align: center;">    
             <a href="{% url 'index' %}" class="normal-link">
                 <h1> J.H Tarapore School </h1>
             </a>
         </div>
-    </div>
-    <div class="ui menu">
-      <a class="item" href="{% url 'index' %}">
-        <i class="fa-home"></i> Home
-      </a>
-      <a class="item" href="{% url 'about' %}">
-        About
-      </a>
-      <a class="item" href="{% url 'curriculum' %}">
-          Curriculum
-      </a>
-      <a class="item" href="{% url 'gallery' %}">
-          Gallery
-      </a>
-      <a class="item" href="{% url 'contact' %}">
-          Contact
-      </a>
-      <a class="item" href="{% url 'services' %}">
-          Services
-      </a>
-      <div class="right menu">
-        <div class="item">
-          <div class="ui icon input">
-            <input placeholder="Search..." type="text">
-            <i class="search link icon"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="messages">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="ui huge inverted red label">
-                    {{ message }}
-                    <i class="fa fa-times close-label"></i>
+        <br>
+        <div class="main-menu">
+            <div class="ui menu">
+                <a class="item" href="{% url 'index' %}">
+                    <i class="home icon"></i> Home
+                </a>
+
+                <div class="right menu">
+                  <div class="item">
+                    <div class="ui icon input">
+                      <input placeholder="Search..." type="text">
+                      <i class="search link icon"></i>
+                    </div>
+                  </div>
                 </div>
-            {% endfor %}
-        {% endif %}
+            </div>
+        </div>
     </div>
+
+    <div class="centered-wrapper" style="text-align: center;">    
+        <div class="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="ui huge inverted red label">
+                        {{ message }}
+                        <i class="close icon close-label"></i>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
     {% block body %}
         <div class="ui piled segment content">
             {% block content %}{% endblock %}
         </div>
     {% endblock %}
 
+
+    <!-- Scripts are here for faster page loading -->
     <script src="{% static 'main/js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
     <script>
         $(function(){
             $('.close-label').click(function(){

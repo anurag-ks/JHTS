@@ -14,10 +14,17 @@
 	margin: 0 0 2em 0 ;
 	border-style: solid;
 	border-width: 0 0 2px 0;
+	border-color: #444;
 }
+
 .header-area h1 {
 	display:inline-block; 
 	font-weight: 300;
+}
+
+.main-menu {
+	width: 60%;
+	margin: 0 auto;
 }
 
 /* Content style */
@@ -31,9 +38,14 @@
 
 .normal-link {
 	color: black;
+	text-decoration: none;
 }
 
 .underline {
 	border-style: solid;
 	border-width: 0 0 5px 0;
+}
+
+.centered-wrapper {
+	margin-bottom: 1em;
 }

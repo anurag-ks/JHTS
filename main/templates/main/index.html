@@ -5,8 +5,9 @@
     {% if posts %}
         {% for post in posts %}
             <div class="ui dividing header">
-                <h3><a href="{% url 'detail' post.id %}">
-                    {{ post.title }}
+                <h3>
+                    <a href="{% url 'detail' post.id %}" class="normal-link">
+                        {{ post.title }}
                     </a>
                 </h3>
                 <a href="{% url 'update' post.id %}" class="right floated">
@@ -14,22 +15,27 @@
                 </a>
             </div>
         {% endfor %}
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if posts.has_previous %}
+                    <a href="?page={{ posts.previous_page_number }}" class="ui blue button">Previous</a>
+                {% else %}
+                    <a href="#" class="ui blue disabled button">Previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                </span>
+
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}" class="ui blue button">Next</a>
+                {% else %}
+                    <a href="#" class="ui blue disabled button">Next</a>
+                {% endif %}
+            </span>
+        </div>
     {% else %}
         <p>No posts yet.</p>
     {% endif %}
-    <div class="pagination">
-        <span class="step-links">
-            {% if posts.has_previous %}
-                <a href="?page={{ posts.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
-            </span>
-
-            {% if posts.has_next %}
-                <a href="?page={{ posts.next_page_number }}">next</a>
-            {% endif %}
-        </span>
-    </div>
 {% endblock %}
