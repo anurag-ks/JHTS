@@ -4,13 +4,22 @@ from django.contrib import messages
 from main.models import Blog
 from django import forms
 from ckeditor.widgets import CKEditorWidget
+from django.core.paginator import *
 
 class BlogForm(ModelForm):
 	content = forms.CharField(widget=CKEditorWidget())
 	class Meta:
 		model = Blog
 def index(request):
-	posts = Blog.objects.all().order_by('-pub_date')[:5]
+	post_list = Blog.objects.all().order_by('-pub_date')
+	paginator = Paginator(post_list, 5)
+	page = request.GET.get('page')
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(1)
 	return render(request, 'main/index.html', {'posts': posts})
 
 def detail(request, blog_id):
