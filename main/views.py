@@ -39,3 +39,20 @@ def create(request, template_name = 'main/form.html'):
 		messages.success(request, 'Post has been created')
 		return redirect('index')
 	return render(request, template_name, {'form':form})
+
+def about(request):
+	template_name = 'main/about.html'
+	return render(request, template_name)
+
+def contact(request):
+	template_name = 'main/contact.html'
+	return render(request, template_name)
+def services(request):
+	template_name = 'main/services.html'
+	return render(request, template_name)
+def gallery(request):
+	template_name = 'main/gallery.html'
+	return render(request, template_name)
+def curriculum(request):
+	template_name = 'main/curriculum.html'
+	return render(request, template_name)

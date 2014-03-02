@@ -19,7 +19,34 @@
             </a>
         </div>
     </div>
-
+    <div class="ui menu">
+      <a class="item" href="{% url 'index' %}">
+        <i class="fa-home"></i> Home
+      </a>
+      <a class="item" href="{% url 'about' %}">
+        About
+      </a>
+      <a class="item" href="{% url 'curriculum' %}">
+          Curriculum
+      </a>
+      <a class="item" href="{% url 'gallery' %}">
+          Gallery
+      </a>
+      <a class="item" href="{% url 'contact' %}">
+          Contact
+      </a>
+      <a class="item" href="{% url 'services' %}">
+          Services
+      </a>
+      <div class="right menu">
+        <div class="item">
+          <div class="ui icon input">
+            <input placeholder="Search..." type="text">
+            <i class="search link icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <div class="messages">
         {% if messages %}
