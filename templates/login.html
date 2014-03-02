@@ -1,13 +1,15 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <form action="/auth/" method="POST"> {% csrf_token %}
-    <div data-role="fieldcontain">
-        <label for="username">Username:</label><input type="username" name="username" id="username" value="" />
-    </div>
-    <div data-role="fieldcontain">
-        <label for="password">Password:</label><input type="password" name="password" id="password" value="" />
-    </div>
-    <button type="submit" name="submit" value="submit-value">Sign in</button>
-</form>
-<body>
+    <form action="{% url 'JHTS.views.auth_and_login' %}" method="POST"> 
+    	{% csrf_token %}
+
+        <label for="username">Username:</label>
+        <input type="username" name="username" class="ui input" />
+		<br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" class="ui input" />
+		<br>
+    	<button type="submit" name="submit" class="ui button green">Sign in</button>
+	</form>
 {% endblock %}
