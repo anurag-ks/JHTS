@@ -1,2 +1,67 @@
 {% extends "base.html" %}
 
+{% block body %}
+<div class="ui ten column divided page grid">
+	<div class="six wide column">
+		<div class="ui segment">
+			<h2 class="ui dividing header">Notice Board</h2>
+
+		{% if posts %}
+	        {% for post in posts %}
+	            <div class="ui dividing header">
+	                <h3>
+	                    <a href="{% url 'detail' post.id %}" class="normal-link">
+	                        {{ post.title }}
+	                    </a>
+	                </h3>
+	                <a href="{% url 'update' post.id %}" class="right floated">
+	                    Update
+	                </a>
+	            </div>
+	        {% endfor %}
+
+	        <div class="pagination">
+	            <span class="step-links">
+	                {% if posts.has_previous %}
+	                    <a href="?page={{ posts.previous_page_number }}" class="ui blue button">Previous</a>
+	                {% else %}
+	                    <a href="#" class="ui blue disabled button">Previous</a>
+	                {% endif %}
+
+	                <span class="current">
+	                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+	                </span>
+
+	                {% if posts.has_next %}
+	                    <a href="?page={{ posts.next_page_number }}" class="ui blue button">Next</a>
+	                {% else %}
+	                    <a href="#" class="ui blue disabled button">Next</a>
+	                {% endif %}
+	            </span>
+	        </div>
+	    {% else %}
+	        <p>No posts yet.</p>
+	    {% endif %}
+
+	    </div>
+
+	</div>
+
+	<div class="six wide column">
+		<div class="ui segment">
+			<h2 class="ui dividing header">
+				J.H Tarapore School
+			</h2>
+			That school with a <em>difference</em>.
+		</div>
+	</div>
+
+	<div class="four wide column">
+		<div class="ui segment">
+			<h2 class="ui dividing header">
+				Events
+			</h2>
+		</div>
+	</div>
+</div>
+{% endblock %}

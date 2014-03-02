@@ -1,14 +1,12 @@
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from main.models import Blog
 from django.core.paginator import *
-from main.forms import BlogForm
+from blog.models import Blog
+from blog.forms import BlogForm
 
 
-def controller(request):
-    # This view will redirect according to the url it gets.
-    # This is still left. Only skeleton code exists.
-
+def index(request):
     post_list = Blog.objects.all().order_by('-pub_date')
     paginator = Paginator(post_list, 5)
     page = request.GET.get('page')
@@ -18,7 +16,18 @@ def controller(request):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(1)
-    return render(request, 'pages/index.html', {'posts': posts})
+
+    return render(request, 'pages/index.html', {
+        'posts': posts
+        })
+
+
+def gallery(request):
+    pass
+
+
+def controller(request):
+    return render(request, 'pages/skeleton.html', {})
 
 
 # def detail(request, blog_id):

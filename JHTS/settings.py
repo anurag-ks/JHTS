@@ -37,8 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
-    'ckeditor'
+    'blog',
+    'ckeditor',
+    'pages'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,8 +94,8 @@ MEDIA_ROOT = os.path.join(tempfile.gettempdir(), 'ck_media')
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_CONFIGS = {
-    'default':{
-    'toolbar': 'Advanced',
+    'default': {
+        'toolbar': 'Advanced',
     }
 }
 

@@ -2,9 +2,9 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 
-class Page(models.Model):
-    title = models.CharField(max_length=64)
-    url = models.CharField(max_length=16, unique=True)
+class Blog(models.Model):
+    title = models.CharField(max_length=50)
+    pub_date = models.DateTimeField(auto_now_add=True)
     content = RichTextField()
 
     def __unicode__(self):

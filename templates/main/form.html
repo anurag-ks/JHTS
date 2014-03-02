@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
+{% block custom_css %}
+.form-table td{
+	padding: 0 0 1em 0;
+}
+{% endblock %}
+
 {% block content %}
 	<form method="post">
 		{% csrf_token %}
-		<table>
+		<table class="form-table">
 			{{ form.as_table }}
 		</table>
 	    <input type="submit" class="ui button green" value="Post" />

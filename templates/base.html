@@ -2,8 +2,10 @@
 <head>
     {% load staticfiles %}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="{% static 'main/semantic.min.css' %}">
-    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/semantic.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+
+    <!-- CKEditor doesn't work without this inside <head> -->
     <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
     <title>
         J.H Tarapore School &#8729; {% block title %}{% endblock %}
@@ -21,12 +23,17 @@
             <a href="{% url 'index' %}" class="normal-link">
                 <h1> J.H Tarapore School </h1>
             </a>
+            <br>
+            A School with a Difference
         </div>
         <br>
         <div class="main-menu">
             <div class="ui menu">
                 <a class="item" href="{% url 'index' %}">
                     <i class="home icon"></i> Home
+                </a>
+                <a class="item" href="{% url 'blog.views.index' %}">
+                    <i class="grid layout icon"></i> Notice Board
                 </a>
 
                 <div class="right menu">
@@ -62,10 +69,14 @@
 
 
     <!-- Scripts are here for faster page loading -->
-    <script src="{% static 'main/js/jquery.js' %}"></script>
-    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+    <script src="{% static 'blog/js/jquery.js' %}"></script>
     <script>
         $(function(){
+            // Initialization related things
+            $('input[type="text"]')
+                .wrap("<div class='ui fluid input'></div>");
+
+            // Functionality
             $('.close-label').click(function(){
                 $(this).parent().fadeOut();
             });
