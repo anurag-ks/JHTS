@@ -92,3 +92,7 @@ MEDIA_ROOT = os.path.join(tempfile.gettempdir(), 'ck_media')
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
+
+# Notice board config
+
+POSTS_PER_PAGE = 5

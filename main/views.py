@@ -3,11 +3,12 @@ from django.contrib import messages
 from main.models import Blog
 from django.core.paginator import *
 from forms import BlogForm
+from JHTS.settings import POSTS_PER_PAGE
 
 
 def index(request):
     post_list = Blog.objects.all().order_by('-pub_date')
-    paginator = Paginator(post_list, 5)
+    paginator = Paginator(post_list, POSTS_PER_PAGE)
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
