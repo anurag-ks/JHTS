@@ -10,11 +10,6 @@
                         {{ post.title }}
                     </a>
                 </h3>
-                {% if request.user.is_authenticated %}
-                <a href="{% url 'update' post.id %}" class="right floated">
-                    Update
-                </a>
-                {% endif %}
             </div> 
         {% endfor %}
 
