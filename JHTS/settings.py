@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'blog',
     'ckeditor',
-    'pages'
+    'pages',
+    'gallery'
 )
 
 MIDDLEWARE_CLASSES = (

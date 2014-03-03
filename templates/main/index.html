@@ -22,6 +22,7 @@
                 <p>
                     {{ post.content | truncatewords:33 | safe }}
                 </p>
+                <a href="{% url 'blog.views.detail' post.id %}" class="ui small button inverted">Read More</a>
             </div> 
         {% endfor %}
 
