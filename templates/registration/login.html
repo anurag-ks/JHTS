@@ -6,13 +6,24 @@
     {% endif %}
     <form action="{% url 'django.contrib.auth.views.login' %}" method="POST"> 
     	{% csrf_token %}
-
-        <label for="username">Username:</label>
-        <input type="username" name="username" class="ui input" />
-		<br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" class="ui input" />
-		<br>
+        <table cellpadding="10" cellspacing="10">
+            <tr>
+                <td>Username:</td>
+                <td>    
+                    <div class="ui fluid input">
+                    <input type="username" name="username"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>
+                    <div class="ui fluid input">
+                    <input type="password" name="password" class="ui input" />
+                    </div>
+                </td>
+            </tr>
+        </table>
     	<button type="submit" name="submit" class="ui button green">Sign in</button>
 	</form>
 {% endblock %}

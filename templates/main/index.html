@@ -4,12 +4,21 @@
     <h1 class="ui center aligned dividing header">Notice Board</h1>
     {% if posts %}
         {% for post in posts %}
-            <div class="ui dividing header">
-                <h3>
+            <div class="ui segment">
+                <h2 class="ui dividing header">
                     <a href="{% url 'detail' post.id %}" class="normal-link">
                         {{ post.title }}
                     </a>
-                </h3>
+
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'delete' post.id %}" class="ui small red button right floated">Delete</a>
+                        <a href="{% url 'update' post.id %}" class="ui small green button right floated">Update</a>
+                    {% endif %}
+                </h2>
+
+                <p>
+                    {{ post.content | truncatewords:33 | safe }}
+                </p>
             </div> 
         {% endfor %}
 
