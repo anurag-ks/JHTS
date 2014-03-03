@@ -12,7 +12,7 @@
 	date published - {{post.pub_date}}
 </h5>
 <br> <br>
-{% if request.user.is_authenticated %}
+{% if user.is_authenticated %}
 	<a href="{% url 'delete' post.id %}" class="ui red button">Delete</a>
 {% endif %}
 

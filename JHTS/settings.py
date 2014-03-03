@@ -105,5 +105,5 @@ POSTS_PER_PAGE = 5
 
 # Login setting
 
-LOGIN_REDIRECT_URL ='/'
+LOGIN_URL ='/login/'
 LOGOUT_REDIRECT_URL = '/'
