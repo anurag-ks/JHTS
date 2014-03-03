@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="{% url 'JHTS.views.auth_and_login' %}" method="POST"> 
+{% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <form action="{% url 'django.contrib.auth.views.login' %}" method="POST"> 
     	{% csrf_token %}
 
         <label for="username">Username:</label>

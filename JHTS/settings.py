@@ -102,3 +102,8 @@ CKEDITOR_CONFIGS = {
 # Notice board config
 
 POSTS_PER_PAGE = 5
+
+# Login setting
+
+LOGIN_REDIRECT_URL ='/'
+LOGOUT_REDIRECT_URL = '/'

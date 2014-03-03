@@ -27,6 +27,11 @@
             A School with a Difference
         </div>
         <br>
+        {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}  <a href="{% url 'django.contrib.auth.views.logout' %}">[logout]</a></p>
+{% else %}
+    <p>Welcome, Guest <a href="{% url 'django.contrib.auth.views.login' %}">[login]</a></p>
+{% endif %}
         <div class="main-menu">
             <div class="ui menu">
                 <a class="item" href="{% url 'index' %}">
