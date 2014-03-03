@@ -26,8 +26,8 @@ def gallery(request):
     pass
 
 
-def controller(request):
-    return render(request, 'pages/skeleton.html', {})
+#def controller(request):
+#    return render(request, 'pages/skeleton.html', {})
 
 
 # def detail(request, blog_id):
