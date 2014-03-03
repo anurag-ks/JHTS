@@ -30,10 +30,11 @@
         
         <div class="main-menu">
             <div class="ui secondary pointing menu">
-                <a class="active item" href="{% url 'index' %}">
+                <a class="{% block home_active %}active{% endblock %} item" href="{% url 'index' %}">
                     <i class="home icon"></i> Home
                 </a>
-                <a class="item" href="{% url 'blog.views.index' %}">
+
+                <a class="{% block notice_board_active %}{% endblock %} item" href="{% url 'blog.views.index' %}">
                     <i class="grid layout icon"></i> Notice Board
 
                     <!-- TODO: Add dynamically produced tag links dropdown here -->
