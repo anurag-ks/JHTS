@@ -25,7 +25,7 @@ def detail(request, blog_id):
     return render(request, 'main/detail.html', {'post': post})
 
 
-@login_required(login_url='/login/')
+@login_required
 def delete(request, blog_id):
     post = get_object_or_404(Blog, pk=blog_id)
     post.delete()
@@ -33,7 +33,7 @@ def delete(request, blog_id):
     return redirect('index')
 
 
-@login_required(login_url='/login/')
+@login_required
 def update(request, blog_id, template_name='main/form.html'):
     post = get_object_or_404(Blog, pk=blog_id)
     form = BlogForm(request.POST or None, instance=post)
@@ -44,7 +44,7 @@ def update(request, blog_id, template_name='main/form.html'):
     return render(request, template_name, {'form': form})
 
 
-@login_required(login_url='/login/')
+@login_required
 def create(request, template_name='main/form.html'):
     form = BlogForm(request.POST or None)
     if form.is_valid():
