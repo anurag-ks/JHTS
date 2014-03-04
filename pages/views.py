@@ -22,7 +22,7 @@ def index(request):
         })
 
 
-def gallery(request):
+# def gallery(request):
     pass
 
 

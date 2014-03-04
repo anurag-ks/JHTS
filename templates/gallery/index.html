@@ -1,3 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+<h1>GALLERY</h1>
+{% if user.is_authenticated %}
+	<a href="{% url 'upload' %}">Upload</a>
+{% endif %}
 {% endblock%}

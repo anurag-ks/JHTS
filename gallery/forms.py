@@ -1,5 +1,9 @@
+from gallery.models import Gallery
 from django import forms
+from django.forms import ModelForm
 
-class GalleryForm(forms.Form):
-    image = forms.ImageField()
-    description = forms.CharField(max_length=50)
+
+
+class GalleryForm(ModelForm):
+    class Meta:
+    	model = Gallery
