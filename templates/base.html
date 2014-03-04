@@ -15,6 +15,39 @@
     {% block custom_css %}
     {% endblock %}
     </style>
+    <style type="text/css">
+    .rslides {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  }
+
+.rslides li {
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+  }
+
+.rslides li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+  }
+
+.rslides img {
+  display: block;
+  height: auto;
+  float: left;
+  width: 100%;
+  border: 0;
+  }
+</style>
 </head>
 
 <body>
@@ -134,6 +167,7 @@
     <!-- Scripts are here for faster page loading -->
     <script src="{% static 'blog/js/jquery.js' %}"></script>
     <script src="{% static 'blog/js/semantic.min.js' %}"></script>
+    <script src="{% static 'blog/js/responsiveslides.min.js' %}"></script>
     <script>
         $(function(){
             // Initialization related things
@@ -158,6 +192,11 @@
         s.src = '//' + disqus_shortname + '.disqus.com/count.js';
         (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $(".rslides").responsiveSlides({auto:true});
+        });
     </script>
 </body>
 </html>

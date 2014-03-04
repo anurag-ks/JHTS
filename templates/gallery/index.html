@@ -15,12 +15,11 @@
 		{% endif %}
 	</h1>
 	<br>
-
-	<div class="ui medium images">
+	<ul class="rslides">
+	
 		{% for img in gallery_images %}
-			<a href="{% url 'gallery.views.detail' img.id %}" class="ui medium image">
-				<img class="rounded ui image" src="{{ img.image.url }}">
-			</a>
+			<li><img class="rounded ui image" src="{{ img.image.url }}"></li>
 		{% endfor %}
-	</div>
+	
+	</ul>
 {% endblock%}
