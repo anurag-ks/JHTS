@@ -22,10 +22,6 @@ def index(request):
         })
 
 
-# def gallery(request):
-    pass
-
-
 #def controller(request):
 #    return render(request, 'pages/skeleton.html', {})
 

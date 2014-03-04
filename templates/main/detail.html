@@ -1,22 +1,31 @@
 {% extends "base.html" %}
 
+{% block home_active %}{% endblock %}
+{% block notice_board_active %}active{% endblock %}
+
 {% block content %}
 
-<h2 class="ui dividing header">
-  	{{ post.title }}
-</h2>
-<div class="ui segment attached">
-	{{ post.content|safe }}
-</div>
-<h5 class="ui right floated bottom attached header">
-	date published - {{post.pub_date}}
-</h5>
-<br> <br>
-{% if user.is_authenticated %}
-	<a href="{% url 'delete' post.id %}" class="ui red button">Delete</a>
-	<a href="{% url 'update' post.id %}" class="ui green button">Update</a>
-{% endif %}
- <div id="disqus_thread"></div>
+    <h2 class="ui dividing header">
+      	{{ post.title }}
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'delete' post.id %}" class="right floated small ui red button">Delete</a>
+            <a href="{% url 'update' post.id %}" class="right floated small ui green button">Update</a>
+        {% endif %}
+    </h2>
+
+    <div class="ui segment attached">
+    	{{ post.content|safe }}
+        
+        <div class="ui bottom right attached label">
+            {{ post.pub_date }}
+        </div>
+    </div>
+
+    <br> <br>
+    
+    <!-- DISQUS scripts -->
+    <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         var disqus_shortname = 'anuragsharma'; // required: replace example with your forum shortname

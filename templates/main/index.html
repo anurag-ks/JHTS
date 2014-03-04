@@ -4,7 +4,14 @@
 {% block notice_board_active %}active{% endblock %}
 
 {% block content %}
-    <h1 class="ui center aligned dividing header">Notice Board</h1>
+    <h1 class="ui center aligned dividing header">
+        Notice Board
+
+        <a class="right floated small ui green button" href="{% url 'blog.views.create' %}">
+            <i class="icon plus"></i>
+            Add Post
+        </a>
+    </h1>
     {% if posts %}
         {% for post in posts %}
             <div class="ui segment">

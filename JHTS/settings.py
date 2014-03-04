@@ -26,8 +26,6 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-STATIC_URL = '/static/'
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -88,7 +86,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+MEDIA_URL = os.path.join(BASE_DIR, 'media')+"/"
+
 STATIC_ROOT = os.path.join(tempfile.gettempdir(), 'ck_static')
 MEDIA_ROOT = os.path.join(tempfile.gettempdir(), 'ck_media')
 
@@ -106,6 +105,6 @@ POSTS_PER_PAGE = 5
 
 # Login setting
 
-LOGIN_URL ='/login/'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

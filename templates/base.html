@@ -40,6 +40,10 @@
                     <!-- TODO: Add dynamically produced tag links dropdown here -->
                 </a>
 
+                <a class="{% block gallery_active %}{% endblock %} item" href="{% url 'gallery.views.index' %}">
+                    <i class="photo icon"></i> Gallery
+                </a>
+
                 <div class="right menu">
                     <div class="item">
                         <div class="ui icon input">
@@ -76,6 +80,22 @@
                             <a class="item" href="{% url 'blog.views.index' %}">
                                 <i class="reorder icon"></i>
                                 View All Posts
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="ui dropdown link item">
+                        Gallery
+                        <i class="icon sort descending"></i>
+                        <div class="menu">
+                            <a class="item" href="{% url 'gallery.views.upload' %}">
+                                <i class="icon plus"></i>
+                                Add Photo
+                            </a>
+
+                            <a class="item" href="{% url 'gallery.views.index' %}">
+                                <i class="reorder icon"></i>
+                                View All Photos
                             </a>
                         </div>
                     </div>
