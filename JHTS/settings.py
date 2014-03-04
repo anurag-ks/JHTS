@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'blog',
     'ckeditor',
     'pages',
-    'gallery'
+    'gallery',
+    'alumni'
 )
 
 MIDDLEWARE_CLASSES = (
