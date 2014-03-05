@@ -108,7 +108,7 @@
                 </div>
             </div>
     
-            {% if user.is_authenticated %}
+            {% if user.is_superuser %}
                 <div class="ui secondary pointing menu">
                     <div class="ui dropdown link item">
                         Notice Board
@@ -141,14 +141,16 @@
                             </a>
                         </div>
                     </div>
-                    
+                    {% endif %}
+                    {% if user.is_authenticated %}
                     <div class="right item">
                         <span href="{% url 'index' %}">
                             Welcome, {{ user.username }}
                         </span>
                     </div>
+                    {% endif %}
                 </div>
-            {% endif %}
+            
         </div>
     </div>
 

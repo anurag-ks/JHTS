@@ -7,7 +7,7 @@
 
 	<h1 class="ui dividing header">
 		Gallery
-		{% if user.is_authenticated %}
+		{% if user.is_superuser %}
 			<a class="right floated small ui green button" href="{% url 'upload' %}">
 				<i class="ui small icon plus"></i>
 				Add Photo

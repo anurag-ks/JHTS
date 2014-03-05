@@ -6,11 +6,12 @@
 {% block content %}
     <h1 class="ui center aligned dividing header">
         Notice Board
-
+        {% if user.is_superuser %}
         <a class="right floated small ui green button" href="{% url 'blog.views.create' %}">
             <i class="icon plus"></i>
             Add Post
         </a>
+        {% endif %}
     </h1>
     {% if posts %}
         {% for post in posts %}
@@ -20,7 +21,7 @@
                         {{ post.title }}
                     </a>
 
-                    {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
                         <a href="{% url 'delete' post.id %}" class="ui small red button right floated">Delete</a>
                         <a href="{% url 'update' post.id %}" class="ui small green button right floated">Update</a>
                     {% endif %}
