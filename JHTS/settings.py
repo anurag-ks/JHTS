@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'ckeditor',
     'pages',
     'gallery',
-    'alumni'
 )
 
 MIDDLEWARE_CLASSES = (
