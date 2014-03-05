@@ -47,6 +47,14 @@
       width: 100%;
       border: 0;
       }
+    .rslides_tabs li {
+        display: inline;
+        float: none;
+        margin-right: 1px;
+        margin-right-value: 1px;
+        margin-right-ltr-source: physical;
+        margin-right-rtl-source: physical;
+    }
 </style>
 </head>
 
@@ -94,12 +102,13 @@
                             <a href="{% url 'django.contrib.auth.views.login' %}" class="ui blue button">
                                 Login
                             </a>
+                            or , <a href="{% url 'JHTS.views.signup' %}" class ="ui blue button">Sign up!!</a>
                         {% endif %}
                     </div>
                 </div>
             </div>
     
-            {% if user.is_authenticated %}
+            {% if user.is_superuser %}
                 <div class="ui secondary pointing menu">
                     <div class="ui dropdown link item">
                         Notice Board
@@ -132,14 +141,16 @@
                             </a>
                         </div>
                     </div>
-                    
+                    {% endif %}
+                    {% if user.is_authenticated %}
                     <div class="right item">
                         <span href="{% url 'index' %}">
                             Welcome, {{ user.username }}
                         </span>
                     </div>
+                    {% endif %}
                 </div>
-            {% endif %}
+            
         </div>
     </div>
 
@@ -195,7 +206,7 @@
     </script>
     <script type="text/javascript">
         $(function(){
-            $(".rslides").responsiveSlides({auto:true});
+            $(".rslides").responsiveSlides({auto:false,pager:true});
         });
     </script>
 </body>

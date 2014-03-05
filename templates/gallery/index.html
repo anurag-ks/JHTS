@@ -7,7 +7,7 @@
 
 	<h1 class="ui dividing header">
 		Gallery
-		{% if user.is_authenticated %}
+		{% if user.is_superuser %}
 			<a class="right floated small ui green button" href="{% url 'upload' %}">
 				<i class="ui small icon plus"></i>
 				Add Photo
@@ -20,6 +20,11 @@
 		{% for img in gallery_images %}
 			<li><img class="rounded ui image" src="{{ img.image.url }}"></li>
 		{% endfor %}
-	
 	</ul>
+		<ul class="rslides_tabs rslides2_tabs">
+			{% for img in gallery_images %}
+			<li class="rslides2_s1 rslides_here ">
+    		</li>
+    		{% endfor %}
+    	</ul>
 {% endblock%}

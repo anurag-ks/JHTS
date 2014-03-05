@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-	{% if user.is_authenticated %}
+	{% if user.is_superuser %}
 		 <form method="post" enctype="multipart/form-data">
 		 	{% csrf_token %}
 		 	<table class="form-table">
@@ -18,5 +18,7 @@
 			</table>
 			<input type="submit" class="ui button green" value="Post" />
         </form>
+    {% else %}
+    	<h1>You are not authorized to view this page, {% user.username %}</h1>
 	{% endif %}
 {% endblock %}

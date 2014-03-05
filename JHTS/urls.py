@@ -9,9 +9,9 @@ urlpatterns = patterns(
     url(r'^gallery/', include('gallery.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^blog/', include('blog.urls')),
+    url(r'^signup/$', 'JHTS.views.signup'),
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
     url(r'^ckeditor/', include('ckeditor.urls')),
-    #url(r'^alumni/', include('alumni.urls')),
     url(r'^', include('pages.urls')),
 )+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
