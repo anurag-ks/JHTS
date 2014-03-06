@@ -60,7 +60,7 @@
 	<ul class="rslides">
 	
 		{% for img in gallery_images %}
-			<li><img class="rounded ui image" src="{{ img.image.url }}"></li>
+			<li><img class="rounded ui image" src="{{ img.image.url }}"><div class="ui bottom attached label">{{ img.description }}</div></li>
 		{% endfor %}
 	</ul>
 		<ul class="rslides_tabs rslides2_tabs">
