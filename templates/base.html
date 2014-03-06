@@ -15,47 +15,7 @@
     {% block custom_css %}
     {% endblock %}
     </style>
-    <style type="text/css">
-        .rslides {
-      position: relative;
-      list-style: none;
-      overflow: hidden;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      }
-
-    .rslides li {
-      -webkit-backface-visibility: hidden;
-      position: absolute;
-      display: none;
-      width: 100%;
-      left: 0;
-      top: 0;
-      }
-
-    .rslides li:first-child {
-      position: relative;
-      display: block;
-      float: left;
-      }
-
-    .rslides img {
-      display: block;
-      height: auto;
-      float: left;
-      width: 100%;
-      border: 0;
-      }
-    .rslides_tabs li {
-        display: inline;
-        float: none;
-        margin-right: 1px;
-        margin-right-value: 1px;
-        margin-right-ltr-source: physical;
-        margin-right-rtl-source: physical;
-    }
-</style>
+      
 </head>
 
 <body>
@@ -65,7 +25,7 @@
                 <h1> J.H Tarapore School </h1>
             </a>
             <br>
-            A School with a Difference
+            None
         </div>
         <br>
         
@@ -101,8 +61,8 @@
                         {% else %}
                             <a href="{% url 'django.contrib.auth.views.login' %}" class="ui blue button">
                                 Login
-                            </a>
-                            or , <a href="{% url 'JHTS.views.signup' %}" class ="ui blue button">Sign up!!</a>
+                            </a> or 
+                            <a href="{% url 'JHTS.views.signup' %}" class="ui blue button">Sign up</a>
                         {% endif %}
                     </div>
                 </div>
@@ -141,16 +101,31 @@
                             </a>
                         </div>
                     </div>
-                    {% endif %}
-                    {% if user.is_authenticated %}
+
+                    <div class="ui dropdown link item">
+                        Pages
+                        <i class="icon sort descending"></i>
+                        <div class="menu">
+                            <a class="item" href="{% url 'pages.views.create' %}">
+                                <i class="icon plus"></i>
+                                Add Page
+                            </a>
+
+                            <a class="item" href="{% url 'pages.views.all' %}">
+                                <i class="reorder icon"></i>
+                                View All Pages
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="right item">
                         <span href="{% url 'index' %}">
                             Welcome, {{ user.username }}
                         </span>
                     </div>
-                    {% endif %}
+                    
                 </div>
-            
+            {% endif %}
         </div>
     </div>
 
@@ -181,28 +156,41 @@
     <script src="{% static 'blog/js/responsiveslides.min.js' %}"></script>
     <script>
         $(function(){
-            // Initialization related things
+            // Initialization related things (hacks for UI)
             $('input[type="text"]')
                 .wrap("<div class='ui fluid input'></div>");
+
+            // Error list displayed in a message hack
+            $('.errorlist')
+                .wrap("<div class='small ui error message'>\
+                            <i class='close icon close-label'></i>\
+                            <div class='header'>\
+                                Errors\
+                            </div>\
+                       </div>");
+            $('.errorlist').addClass("list");
+
+
+            // Checkbox hacks
+            $('input[type="checkbox"]')
+                .wrap('<div class="ui slider checkbox">\
+                    </div>');
+
+            $('input[type="checkbox"]')
+                .after(function(){ return "<label></label>"; });
+
+            $('.ui .checkbox').checkbox();
+
+
+            // This is not a hack.
             $('.ui .dropdown').dropdown();
+
 
             // Functionality
             $('.close-label').click(function(){
                 $(this).parent().fadeOut();
             });
         });
-    </script>
-    <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'anuragsharma'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
     </script>
     <script type="text/javascript">
         $(function(){

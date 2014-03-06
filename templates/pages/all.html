@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+	{% if pages %}
+        {% for page in pages %}
+            <div class="ui segment">
+                <h2 class="ui dividing header">
+                    <a href="{% url 'pages.views.controller' page.url %}" class="normal-link">
+                        {{ page.title }}
+                    </a>
+
+                    {% if user.is_superuser %}
+                        <a href="{% url 'pages.views.delete' page.url %}" class="ui small red button right floated">Delete</a>
+                        <a href="{% url 'pages.views.update' page.url %}" class="ui small green button right floated">Update</a>
+                    {% endif %}
+                </h2>
+
+                <p>
+                    {{ page.content | truncatewords:33 | safe }}
+                </p>
+                <br>
+                <a href="{% url 'pages.views.controller' page.url %}" class="ui small basic button">Read More</a>
+            </div> 
+        {% endfor %}
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if pages.has_previous %}
+                    <a href="?page={{ pages.previous_page_number }}" class="ui blue button">Previous</a>
+                {% else %}
+                    <a href="#" class="ui blue disabled button">Previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ pages.number }} of {{ pages.paginator.num_pages }}
+                </span>
+
+                {% if pages.has_next %}
+                    <a href="?page={{ pages.next_page_number }}" class="ui blue button">Next</a>
+                {% else %}
+                    <a href="#" class="ui blue disabled button">Next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% else %}
+        <p>No pages yet.</p>
+    {% endif %}
+{% endblock %}

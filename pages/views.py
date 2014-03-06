@@ -2,8 +2,10 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.core.paginator import *
+from django.contrib.auth.decorators import login_required
 from blog.models import Blog
-from blog.forms import BlogForm
+from pages.models import Page
+from pages.forms import PageForm
 
 
 def index(request):
@@ -22,36 +24,58 @@ def index(request):
         })
 
 
-#def controller(request):
-#    return render(request, 'pages/skeleton.html', {})
+def controller(request, url):
+    page = get_object_or_404(Page, url=url)
+    return render(request, 'pages/skeleton.html', {'page': page})
 
 
-# def detail(request, blog_id):
-#     post = get_object_or_404(Blog, pk=blog_id)
-#     return render(request, 'main/detail.html', {'post': post})
+@login_required
+def all(request):
+    page_list = Page.objects.all()
+    paginator = Paginator(page_list, 5)
+    page_number = request.GET.get('page')
+    try:
+        pages = paginator.page(page_number)
+    except PageNotAnInteger:
+        pages = paginator.page(1)
+    except EmptyPage:
+        pages = paginator.page(1)
+
+    return render(request, 'pages/all.html', {
+        'pages': pages
+        })
 
 
-# def delete(request, blog_id):
-#     post = get_object_or_404(Blog, pk=blog_id)
-#     post.delete()
-#     messages.success(request, 'Post has been deleted')
-#     return redirect('index')
+@login_required
+def create(request):
+    form = PageForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Page has been created')
+        return redirect('index')
+    return render(request, 'pages/form.html', {
+        'form': form,
+        'update': False
+        })
 
 
-# def update(request, blog_id, template_name='main/form.html'):
-#     post = get_object_or_404(Blog, pk=blog_id)
-#     form = BlogForm(request.POST or None, instance=post)
-#     if form.is_valid():
-#         form.save()
-#         messages.success(request, 'Post has been updated')
-#         return redirect('index')
-#     return render(request, template_name, {'form': form})
+@login_required
+def delete(request, url):
+    page = get_object_or_404(Page, url=url)
+    page.delete()
+    messages.success(request, 'Page has been deleted')
+    return redirect('index')
 
 
-# def create(request, template_name='main/form.html'):
-#     form = BlogForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         messages.success(request, 'Post has been created')
-#         return redirect('index')
-#     return render(request, template_name, {'form': form})
+@login_required
+def update(request, url):
+    page = get_object_or_404(Page, url=url)
+    form = PageForm(request.POST or None, instance=page)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Page has been updated')
+        return redirect('pages.controller', url=page.url)
+    return render(request, 'pages/form.html', {
+        'form': form,
+        'update': True
+        })
