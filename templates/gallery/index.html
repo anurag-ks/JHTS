@@ -3,6 +3,12 @@
 {% block home_active %}{% endblock %}
 {% block gallery_active %}active{% endblock %}
 
+{% block custom_js %}
+$(function(){
+    $(".rslides").responsiveSlides({auto:false,pager:true});
+});
+{% endblock %}
+
 {% block custom_css %}
 .rslides {
 	position: relative;
@@ -58,15 +64,14 @@
 	</h1>
 	<br>
 	<ul class="rslides">
-	
 		{% for img in gallery_images %}
-			<li><img class="rounded ui image" src="{{ img.image.url }}"></li>
+			<li><img class="rounded ui image" src="{{ img }}"></li>
 		{% endfor %}
 	</ul>
-		<ul class="rslides_tabs rslides2_tabs">
-			{% for img in gallery_images %}
-			<li class="rslides2_s1 rslides_here ">
-    		</li>
-    		{% endfor %}
-    	</ul>
+	<ul class="rslides_tabs rslides2_tabs">
+		{% for img in gallery_images %}
+		<li class="rslides2_s1 rslides_here ">
+		</li>
+		{% endfor %}
+	</ul>
 {% endblock%}

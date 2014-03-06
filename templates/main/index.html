@@ -30,7 +30,14 @@
                 <p>
                     {{ post.content | truncatewords:33 | safe }}
                 </p>
-                <a href="{% url 'blog.views.detail' post.id %}" class="ui small button inverted">Read More</a>
+                <br>
+                <div>
+                    <a href="{% url 'blog.views.detail' post.id %}" class="ui small button inverted">Read More</a>
+                    <div class=""> 
+                        {{ post.tags.names }}
+                    </div>
+                    <!-- TODO: display tags and link to them. -->
+                </div>
             </div> 
         {% endfor %}
 

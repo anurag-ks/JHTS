@@ -154,6 +154,10 @@
     <script src="{% static 'blog/js/jquery.js' %}"></script>
     <script src="{% static 'blog/js/semantic.min.js' %}"></script>
     <script src="{% static 'blog/js/responsiveslides.min.js' %}"></script>
+
+    {% block custom_js_includes %}
+    {% endblock %}
+    
     <script>
         $(function(){
             // Initialization related things (hacks for UI)
@@ -190,11 +194,9 @@
             $('.close-label').click(function(){
                 $(this).parent().fadeOut();
             });
-        });
-    </script>
-    <script type="text/javascript">
-        $(function(){
-            $(".rslides").responsiveSlides({auto:false,pager:true});
+
+            {% block custom_js %}
+            {% endblock %}
         });
     </script>
 </body>

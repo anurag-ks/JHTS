@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'pages',
     'gallery',
+    'taggit'
 )
 
 MIDDLEWARE_CLASSES = (
