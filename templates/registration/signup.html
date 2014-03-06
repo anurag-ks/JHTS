@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="post">
+<form method="post" class="ui fluid form">
 	{% csrf_token %}
 	<table class="form-table">
 		{{ form.as_table }}
