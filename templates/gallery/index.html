@@ -65,17 +65,16 @@ $(function(){
 	<br>
 	<ul class="rslides">
 		{% for img in gallery_images %}
-<<<<<<< HEAD
-			<li><img class="rounded ui image" src="{{ img }}"></li>
+			<li><img class="rounded ui image" src="{{ img.image.name }}"></li>
 		{% endfor %}
 	</ul>
 	<ul class="rslides_tabs rslides2_tabs">
 		{% for img in gallery_images %}
 		<li class="rslides2_s1 rslides_here ">
 		</li>
-=======
-			<li><img class="rounded ui image" src="{{ img.image.url }}"><div class="ui bottom attached label">{{ img.description }}</div></li>
->>>>>>> 4d143cfaf599592f7fca310dd79b56ec0798b218
+			<li><div class="ui bottom attached label">{{ img.description }}</div>
+			</li>
+
 		{% endfor %}
 	</ul>
 {% endblock%}

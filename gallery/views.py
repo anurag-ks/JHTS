@@ -6,7 +6,7 @@ from django.core.paginator import *
 from forms import GalleryForm
 from JHTS.settings import POSTS_PER_PAGE
 from django.contrib.auth.decorators import login_required
-
+from django.template import RequestContext
 
 def index(request):
     images = GalleryPhoto.objects.all()
@@ -31,9 +31,10 @@ def upload(request, template_name="gallery/form.html"):
     form = GalleryForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
+        messages.success(request, "image has been uploaded")
         return redirect('gallery.views.index')
-    return render(request, template_name, {'form': form})
 
+    return render(request, template_name,{'form':form})
 
 @login_required
 def delete(request, gallery_id):
