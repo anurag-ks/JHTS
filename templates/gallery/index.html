@@ -64,7 +64,11 @@ Gallery
 <br>
 <ul class="rslides">
 {% for img in gallery_images %}
-	<li><img src="{{ img.image.url }}"  alt="{{ image.description }}" class="rounded ui large image"></li>
+	<li>
+		<a href="{% url 'gallery.views.detail' img.id %}">
+			<img src="{{ img.image.url }}"  alt="{{ image.description }}" class="rounded ui large image">
+		</a>
+	</li>
 {% endfor %}
 </ul>
 <div class="ui animated list">
