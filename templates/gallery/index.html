@@ -50,31 +50,33 @@ $(function(){
 	margin-right-rtl-source: physical;
 }
 {% endblock %}
-
 {% block content %}
 
-	<h1 class="ui dividing header">
-		Gallery
-		{% if user.is_superuser %}
-			<a class="right floated small ui green button" href="{% url 'upload' %}">
-				<i class="ui small icon plus"></i>
-				Add Photo
-			</a>
-		{% endif %}
-	</h1>
-	<br>
-	<ul class="rslides">
-		{% for img in gallery_images %}
-			<li><img class="rounded ui image" src="{{ img.image.name }}"></li>
-		{% endfor %}
-	</ul>
-	<ul class="rslides_tabs rslides2_tabs">
-		{% for img in gallery_images %}
-		<li class="rslides2_s1 rslides_here ">
-		</li>
-			<li><div class="ui bottom attached label">{{ img.description }}</div>
-			</li>
+<h1 class="ui dividing header">
+Gallery
+{% if user.is_authenticated %}
+<a class="right floated small ui green button" href="{% url 'upload' %}">
+<i class="ui small icon plus"></i>
+Add Photo
+</a>
+{% endif %}
+</h1>
+<br>
+<ul class="rslides">
 
-		{% endfor %}
-	</ul>
+{% for img in gallery_images %}
+<li><img src="{{ img.image.url }}"  alt="{{ image.description }}"></li>
+{% endfor %}
+</ul>
+<div class="ui animated list">
+<ul class="rslides_tabs rslides2_tabs">
+{% for img in gallery_images %}
+<div class="item">
+<li class="rslides2_s1 rslides_here ">
+     </li>
+     </div>
+     {% endfor %}
+     </ul>
+    </div>
 {% endblock%}
+
