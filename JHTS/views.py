@@ -9,7 +9,7 @@ def signup(request, template_name="registration/signup.html"):
 		if form.is_valid():
 			form.save()
 			messages.success(request, 'User has been created, Now go to login !!')
-	        return redirect('/')
+	        return redirect('/login/')
 		
 	else :
 		form = UserCreationForm() # unbound form
