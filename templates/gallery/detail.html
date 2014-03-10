@@ -5,7 +5,8 @@
 
 {% block content %}
 	<img src="{{ image.image.url }}" alt="{{ image.description }}">
-	<div class="ui inverted segment">
+	<div class="ui blue segment">
 		<p>{{ image.description }}</p>
 	</div>
+	<a href="{% url 'gallery.views.delete' image.id %}" class="ui red button">Delete</a>
 {% endblock %}
