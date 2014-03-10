@@ -2,11 +2,16 @@
 
 {% block content %}
 <form method="post" class="ui fluid form">
+{% if user.is_authenticate %}
 	{% csrf_token %}
 	<table class="form-table">
 		{{ form.as_table }}
+
 	</table>
     <input type="submit" class="ui button small green" value="Sign Up" />
     <a href="{% url 'index' %}" class="ui button red">Cancel</a>
+{% else %}
+	<p>You are already logged in, to create a new user please logout first.</p>
+{% endif %}
 </form>
 {% endblock %}

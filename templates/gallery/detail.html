@@ -4,9 +4,11 @@
 {% block gallery_active %}active{% endblock %}
 
 {% block content %}
-	<img src="{{ image.image.url }}" alt="{{ image.description }}">
+	<img src="{{ image.image.url }}" alt="{{ image.description }}" class="ui rounded image">
 	<div class="ui blue segment">
 		<p>{{ image.description }}</p>
 	</div>
-	<a href="{% url 'gallery.views.delete' image.id %}" class="ui red button">Delete</a>
+	{% if user.is_superuser %}
+		<a href="{% url 'gallery.views.delete' image.id %}" class="ui red button">Delete</a>
+	{% endif %}
 {% endblock %}

@@ -28,17 +28,25 @@ def detail(request, gallery_id):
 
 @login_required
 def upload(request, template_name="gallery/form.html"):
-    form = GalleryForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
-        messages.success(request, "image has been uploaded")
-        return redirect('gallery.views.index')
+    if request.user.is_superuser:
+        form = GalleryForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "image has been uploaded")
+            return redirect('gallery.views.index')
 
-    return render(request, template_name,{'form':form})
+        return render(request, template_name,{'form':form})
+    else:
+        messages.success(request, 'You are not authorized')
+        return redirect('index')
 
 @login_required
 def delete(request, gallery_id):
-    image = get_object_or_404(GalleryPhoto, pk=gallery_id)
-    image.delete()
-    messages.success(request, 'Image has been deleted')
-    return redirect('gallery.views.index')
+    if request.user.is_superuser:
+        image = get_object_or_404(GalleryPhoto, pk=gallery_id)
+        image.delete()
+        messages.success(request, 'Image has been deleted')
+        return redirect('gallery.views.index')
+    else:
+        messages.success(request, 'You are not authorized')
+        return redirect('index')

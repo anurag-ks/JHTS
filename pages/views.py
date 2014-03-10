@@ -48,34 +48,46 @@ def all(request):
 
 @login_required
 def create(request):
-    form = PageForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'Page has been created')
+    if request.user.is_superuser:
+        form = PageForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Page has been created')
+            return redirect('index')
+        return render(request, 'pages/form.html', {
+            'form': form,
+            'update': False
+            })
+    else:
+        messages.success(request, 'You are not authorized')
         return redirect('index')
-    return render(request, 'pages/form.html', {
-        'form': form,
-        'update': False
-        })
 
 
 @login_required
 def delete(request, url):
-    page = get_object_or_404(Page, url=url)
-    page.delete()
-    messages.success(request, 'Page has been deleted')
-    return redirect('index')
+    if request.user.is_superuser:
+        page = get_object_or_404(Page, url=url)
+        page.delete()
+        messages.success(request, 'Page has been deleted')
+        return redirect('index')
+    else:
+        messages.success(request, 'You are not authorized')
+        return redirect('index')
 
 
 @login_required
 def update(request, url):
-    page = get_object_or_404(Page, url=url)
-    form = PageForm(request.POST or None, instance=page)
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'Page has been updated')
-        return redirect('pages.controller', url=page.url)
-    return render(request, 'pages/form.html', {
-        'form': form,
-        'update': True
-        })
+    if request.user.is_superuser:
+        page = get_object_or_404(Page, url=url)
+        form = PageForm(request.POST or None, instance=page)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Page has been updated')
+            return redirect('pages.controller', url=page.url)
+        return render(request, 'pages/form.html', {
+            'form': form,
+            'update': True
+            })
+    else:
+        messages.success(request, 'You are not authorized')
+        return redirect('index')
