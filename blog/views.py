@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
+    """
+        Index view for the blog.
+    """
     post_list = Blog.objects.all().order_by('-pub_date')
     paginator = Paginator(post_list, POSTS_PER_PAGE)
     page = request.GET.get('page')
@@ -21,12 +24,19 @@ def index(request):
 
 
 def detail(request, blog_id):
+    """
+        View for a single blog post.
+    """
     post = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'main/detail.html', {'post': post})
 
 
 @login_required
 def delete(request, blog_id):
+    """
+        View to delete a particular blog post.
+        Just for the SuperUser.
+    """
     if request.user.is_superuser:
         post = get_object_or_404(Blog, pk=blog_id)
         post.delete()
@@ -39,6 +49,10 @@ def delete(request, blog_id):
 
 @login_required
 def update(request, blog_id, template_name='main/form.html'):
+    """
+        View to update a particular blog post.
+        Just for the SuperUser.
+    """
     if request.user.is_superuser:
         post = get_object_or_404(Blog, pk=blog_id)
         form = BlogForm(request.POST or None, instance=post)
@@ -54,6 +68,10 @@ def update(request, blog_id, template_name='main/form.html'):
 
 @login_required
 def create(request, template_name='main/form.html'):
+    """
+        View to create a new blog post.
+        Just for the SuperUser.
+    """
     if request.user.is_superuser:
         form = BlogForm(request.POST or None)
         if form.is_valid():
@@ -65,4 +83,5 @@ def create(request, template_name='main/form.html'):
         messages.success(request, 'You are not authorized')
         return redirect('index')
 
+# -----------------------------------------------------------------------
 

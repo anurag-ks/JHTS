@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 
 def index(request):
+    """
+        Index view for the Gallery.
+    """
     images = GalleryPhoto.objects.all()
     paginator = Paginator(images, POSTS_PER_PAGE)
     page = request.GET.get('page')
@@ -22,12 +25,19 @@ def index(request):
 
 
 def detail(request, gallery_id):
+    """
+        Detail view for a particular gallery photo.
+    """
     image = get_object_or_404(GalleryPhoto, pk=gallery_id)
     return render(request, 'gallery/detail.html', {'image': image})
 
 
 @login_required
 def upload(request, template_name="gallery/form.html"):
+    """
+        View to upload a new photo.
+        Just for the SuperUser.
+    """
     if request.user.is_superuser:
         form = GalleryForm(request.POST or None, request.FILES or None)
         if form.is_valid():
@@ -42,6 +52,10 @@ def upload(request, template_name="gallery/form.html"):
 
 @login_required
 def delete(request, gallery_id):
+    """
+        View to delete a particular photo.
+        Just for the SuperUser.
+    """
     if request.user.is_superuser:
         image = get_object_or_404(GalleryPhoto, pk=gallery_id)
         image.delete()
@@ -50,3 +64,5 @@ def delete(request, gallery_id):
     else:
         messages.success(request, 'You are not authorized')
         return redirect('index')
+
+# -------------------------------------------------------------------------
