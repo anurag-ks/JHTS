@@ -28,7 +28,7 @@ Gallery
 		<div class="ui blue raised segment" id = "pic_holder">
 			<a href="{% url 'gallery.views.detail' img.id %}">
 				<img src="{{ img.image.url }}"  alt="{{ img.description }}" class="rounded ui large image">
-				<div class="ui teal ribbon label">{{ img.description  }}</div>
+				<div class="ui teal ribbon label">{{ img.description | truncatewords:10 | safe }}[ See More]</div>
 			</a>
 		</div>
 		<br>
