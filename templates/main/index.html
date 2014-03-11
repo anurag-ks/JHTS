@@ -22,8 +22,34 @@
                     </a>
 
                     {% if user.is_superuser %}
-                        <a href="{% url 'delete' post.id %}" class="ui small red button right floated">Delete</a>
-                        <a href="{% url 'update' post.id %}" class="ui small green button right floated">Update</a>
+                        <button class="right floated small ui red button delete-button">
+                            Delete
+                        </button>
+                        
+                        <!-- Modal code -->
+
+                        <div class="ui small modal">
+                            <i class="close icon"></i>
+
+                            <div class="header">
+                                Delete Post
+                            </div>
+                            <div class="content">
+                                <p>Are you sure you want to delete '{{ post.title }}'?</p>
+                            </div>
+
+                            <div class="actions">
+                                <div class="ui basic button">
+                                    No
+                                </div>
+                                <a class="ui negative button" href="{% url 'blog.views.delete' post.id %}">
+                                    Yes
+                                    <i class="trash icon"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <a href="{% url 'blog.views.update' post.id %}" class="ui small green button right floated">Update</a>
                     {% endif %}
                 </h2>
 
@@ -32,10 +58,10 @@
                 </p>
                 <br>
                 <div>
-                    <a href="{% url 'blog.views.detail' post.id %}" class="ui small button inverted">Read More</a>
-                    <div class=""> 
+                    <a href="{% url 'blog.views.detail' post.id %}" class="ui small basic button">Read More</a>
+                    <!-- <div> 
                         {{ post.tags.names }}
-                    </div>
+                    </div> -->
                     <!-- TODO: display tags and link to them. -->
                 </div>
             </div> 
@@ -63,4 +89,13 @@
     {% else %}
         <p>No posts yet.</p>
     {% endif %}
+{% endblock %}
+
+{% block custom_js %}
+    $('.delete-button').click(function(){
+        $(this)
+            .siblings('.modal')
+            .modal('setting', 'detachable', false)
+            .modal('show');
+    });
 {% endblock %}

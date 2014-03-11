@@ -5,7 +5,33 @@
 		{{ page.title }}
 
 		{% if user.is_superuser %}
-		    <a href="{% url 'pages.views.delete' page.url %}" class="right floated small ui red button">Delete</a>
+		    <button class="ui small red button right floated delete-button">
+                Delete
+            </button>
+
+            <!-- Modal code -->
+
+            <div class="ui small modal">
+                <i class="close icon"></i>
+
+                <div class="header">
+                    Delete Post
+                </div>
+                <div class="content">
+                    <p>Are you sure you want to delete '{{ page.title }}'?</p>
+                </div>
+
+                <div class="actions">
+                    <div class="ui basic button">
+                        No
+                    </div>
+                    <a class="ui negative button" href="{% url 'pages.views.delete' page.url %}">
+                        Yes
+                        <i class="trash icon"></i>
+                    </a>
+                </div>
+            </div>
+
 		    <a href="{% url 'pages.views.update' page.url %}" class="right floated small ui green button">Update</a>
 		{% endif %}
 	</h2>
@@ -38,4 +64,14 @@
 	    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	{% endif %}
+{% endblock %}
+
+{% block custom_js %}
+    $('.delete-button').on('click', function(){
+        console.log("clicked");
+        $(this)
+            .siblings('.modal')
+            .modal('setting', 'detachable', false)
+            .modal('show');
+    });
 {% endblock %}

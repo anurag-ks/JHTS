@@ -120,7 +120,7 @@
 
                     <div class="right item">
                         <span href="{% url 'index' %}">
-                            Welcome, {{ user.username }}
+                            Welcome {{ user.username }}
                         </span>
                     </div>
                     
@@ -193,6 +193,9 @@
             // Functionality
             $('.close-label').click(function(){
                 $(this).parent().fadeOut();
+            });
+            $('.close-label').parent().click(function(){
+                $(this).fadeOut();
             });
 
             {% block custom_js %}

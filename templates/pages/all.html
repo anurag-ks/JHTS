@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h2 class="ui dividing header">
+        Pages
+    </h2>
+
 	{% if pages %}
         {% for page in pages %}
             <div class="ui segment">
@@ -10,7 +14,33 @@
                     </a>
 
                     {% if user.is_superuser %}
-                        <a href="{% url 'pages.views.delete' page.url %}" class="ui small red button right floated">Delete</a>
+                        <button class="ui small red button right floated delete-button">
+                            Delete
+                        </button>
+
+                        <!-- Modal code -->
+
+                        <div class="ui small modal">
+                            <i class="close icon"></i>
+
+                            <div class="header">
+                                Delete Post
+                            </div>
+                            <div class="content">
+                                <p>Are you sure you want to delete '{{ page.title }}'?</p>
+                            </div>
+
+                            <div class="actions">
+                                <div class="ui basic button">
+                                    No
+                                </div>
+                                <a class="ui negative button" href="{% url 'pages.views.delete' page.url %}">
+                                    Yes
+                                    <i class="trash icon"></i>
+                                </a>
+                            </div>
+                        </div>
+
                         <a href="{% url 'pages.views.update' page.url %}" class="ui small green button right floated">Update</a>
                     {% endif %}
                 </h2>
@@ -45,4 +75,14 @@
     {% else %}
         <p>No pages yet.</p>
     {% endif %}
+{% endblock %}
+
+{% block custom_js %}
+    $('.delete-button').on('click', function(){
+        console.log("clicked");
+        $(this)
+            .siblings('.modal')
+            .modal('setting', 'detachable', false)
+            .modal('show');
+    });
 {% endblock %}

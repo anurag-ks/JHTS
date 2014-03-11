@@ -20,7 +20,7 @@
 		            <p>
 		            	{{ post.content | truncatewords:33 | safe }}
 		            </p>
-		            <a href="{% url 'blog.views.detail' post.id %}" class="ui small button blue">Read More</a>
+		            <a href="{% url 'blog.views.detail' post.id %}" class="ui small basic button">Read More</a>
 		        </div>
 		        {% endfor %}
 
