@@ -15,3 +15,6 @@ def signup(request, template_name="registration/signup.html"):
 		form = UserCreationForm() # unbound form
 	return render(request, template_name, {'form':form})
 
+# only works in production (DEBUG=False)
+def error404(request):
+	render(request, "404.html")

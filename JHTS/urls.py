@@ -16,3 +16,6 @@ urlpatterns = patterns(
 )+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += patterns('', url(r'^', include('pages.urls')))
+
+# only works in production (DEBUG=False)
+handler404 = 'JHTS.views.error404'
