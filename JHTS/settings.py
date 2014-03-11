@@ -8,7 +8,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 import tempfile
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -24,7 +23,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+# FOR TESTING ONLY! CHANGE THIS IN PRODUCTION.
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -35,11 +35,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
     'ckeditor',
+    'taggit',
+    'blog',
     'pages',
     'gallery',
-    'taggit'
 )
 
 MIDDLEWARE_CLASSES = (
