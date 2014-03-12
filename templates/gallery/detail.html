@@ -9,6 +9,40 @@
 		<p>{{ image.description }}</p>
 	</div>
 	{% if user.is_superuser %}
-		<a href="{% url 'gallery.views.delete' image.id %}" class="ui red button">Delete</a>
+	<button class="ui small red button right floated delete-button">Delete</button>
+
+        <!-- Modal code -->
+
+        <div class="ui small modal">
+            <i class="close icon"></i>
+
+            <div class="header">
+                Delete Image
+            </div>
+            <div class="content">
+                <p>Are you sure you want to delete this image?</p>
+            </div>
+
+            <div class="actions">
+                <div class="ui basic button">
+                    No
+                </div>
+                <a class="ui negative button" href="{% url 'gallery.views.delete' image.id %}">
+                    Yes
+                    <i class="trash icon"></i>
+                </a>
+            </div>
+        </div>
 	{% endif %}
+{% endblock %}
+
+
+{% block custom_js %}
+    $('.delete-button').on('click', function(){
+        console.log("clicked");
+        $(this)
+            .siblings('.modal')
+            .modal('setting', 'detachable', false)
+            .modal('show');
+    });
 {% endblock %}
