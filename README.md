@@ -1,7 +1,7 @@
 JHTS
 ====
 
-This is a Django based school site for our school J.H.Tarapore .
+This is a Django based CMS for our school site for our school J.H.Tarapore .
 
 How to contribute
 =================
@@ -28,3 +28,7 @@ Repo Owners
 <li><a href="https://github.com/Anurag-Ans">Anurag Sharma</a>
 <li><a href="https://github.com/svineet">Sai Vineet</a>
 </ul>
+
+Notes
+=====
+* We like suggestion from people but still don't tell us to change the whole UI system or change the framework or    something like that.
