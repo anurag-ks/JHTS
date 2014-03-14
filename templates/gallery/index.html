@@ -33,6 +33,26 @@ Gallery
 		</div>
 		<br>
 	{% endfor %}
+	<div class="pagination">
+            <span class="step-links">
+                {% if gallery_images.has_previous %}
+                    <a href="?page={{ gallery_images.previous_page_number }}" class="ui blue button">Previous</a>
+                {% else %}
+                    <a href="#" class="ui blue disabled button">Previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ gallery_images.number }} of {{ gallery_images.paginator.num_pages }}
+                </span>
+
+                {% if gallery_images.has_next %}
+                    <a href="?page={{ gallery_images.next_page_number }}" class="ui blue button">Next</a>
+                {% else %}
+                    <a href="#" class="ui blue disabled button">Next</a>
+                {% endif %}
+            </span>
+	</div>
+
 {% else %}
 	<div id="text_holder">
 		<p>No Images to display</p>		

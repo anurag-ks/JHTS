@@ -4,10 +4,15 @@
 {% block gallery_active %}active{% endblock %}
 
 {% block content %}
-	<img src="{{ image.image.url }}" alt="{{ image.description }}" class="ui rounded image">
-	<div class="ui blue segment">
-		<p>{{ image.description }}</p>
-	</div>
+    <main class="ui two column grid">
+        <aside class="column">
+            <img src="{{ image.image.url }}" alt="{{ image.description }}" class="ui rounded image">
+        </aside>
+        <section class="column">
+            <div class="ui blue segment">
+                <p>{{ image.description }}</p>
+            </div>
+        </section>
 	{% if user.is_superuser %}
 	<button class="ui small red button right floated delete-button">Delete</button>
 
