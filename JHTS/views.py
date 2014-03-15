@@ -19,13 +19,17 @@ class UserCreateForm(UserCreationForm):
         return user
 
 def signup(request, template_name="registration/signup.html"):
-    form = UserCreateForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        messages.success(request,
-                         'User Account Created. Please proceed to login.')
-        return redirect('/login/')
-    return render(request, template_name, {'form': form})
+    if request.user.is_authenticated:
+        messages.warning(request, 'Logout to create a new user')
+        return redirect('/')
+    else:
+        form = UserCreateForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request,
+                             'User Account Created. Please proceed to login.')
+            return redirect('/login/')
+        return render(request, template_name, {'form': form})
 
 
 def error404(request):
