@@ -44,7 +44,11 @@
                 <a class="{% block gallery_active %}{% endblock %} item" href="{% url 'gallery.views.index' %}">
                     <i class="photo icon"></i> Gallery
                 </a>
-
+                {% for page in pages %}
+                <a href="{{ page.url }}" class = "item">
+                    {{page.title}}
+                </a>
+                {% endfor %}
                 <div class="right menu">
                     <div class="item">
                         <div class="ui icon input">
