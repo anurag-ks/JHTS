@@ -1,12 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
 from django.contrib import messages
 from gallery.models import GalleryPhoto
 from django.core.paginator import *
 from forms import GalleryForm
 from JHTS.settings import POSTS_PER_PAGE
 from django.contrib.auth.decorators import login_required
-from django.template import RequestContext
+
 
 def index(request):
     """
@@ -45,10 +44,11 @@ def upload(request, template_name="gallery/form.html"):
             messages.success(request, "image has been uploaded")
             return redirect('gallery.views.index')
 
-        return render(request, template_name,{'form':form})
+        return render(request, template_name, {'form': form})
     else:
         messages.success(request, 'You are not authorized')
         return redirect('index')
+
 
 @login_required
 def delete(request, gallery_id):
@@ -64,5 +64,3 @@ def delete(request, gallery_id):
     else:
         messages.success(request, 'You are not authorized')
         return redirect('index')
-
-# -------------------------------------------------------------------------

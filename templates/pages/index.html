@@ -6,49 +6,30 @@
 		<div class="ui segment">
 			<h2 class="ui dividing header">Notice Board</h2>
 
-		{% if posts %}
-			<div class="indent">
-		        {% for post in posts %}
-		        <div class="ui segment">
-		            <div class="ui dividing header">
-		                <h3>
-		                    <a href="{% url 'detail' post.id %}" class="normal-link">
-		                        {{ post.title }}
-		                    </a>
-		                </h3>
-		            </div>
-		            <p>
-		            	{{ post.content | truncatewords:33 | safe }}
-		            </p>
-		            <a href="{% url 'blog.views.detail' post.id %}" class="ui small basic button">Read More</a>
+			{% if posts %}
+				<div class="indent">
+			        {% for post in posts %}
+				        <div class="ui segment">
+				            <div class="ui dividing header">
+				                <h3>
+				                    <a href="{% url 'detail' post.id %}" class="normal-link">
+				                        {{ post.title }}
+				                    </a>
+				                </h3>
+				            </div>
+				            <p>
+				            	{{ post.content | truncatewords:33 | safe }}
+				            </p>
+				            <a href="{% url 'blog.views.detail' post.id %}" class="ui small basic button">Read More</a>
+				        </div>
+			        {% endfor %}
+			        <a href="{% url 'blog.views.index' %}" class="ui basic fluid button">
+			        	View All Notices
+			        </a>
 		        </div>
-		        {% endfor %}
-
-
-		        <div class="pagination">
-		            <span class="step-links">
-		                {% if posts.has_previous %}
-		                    <a href="?page={{ posts.previous_page_number }}" class="ui blue button">Previous</a>
-		                {% else %}
-		                    <a href="#" class="ui blue disabled button">Previous</a>
-		                {% endif %}
-
-		                <span class="current">
-		                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
-		                </span>
-
-		                {% if posts.has_next %}
-		                    <a href="?page={{ posts.next_page_number }}" class="ui blue button">Next</a>
-		                {% else %}
-		                    <a href="#" class="ui blue disabled button">Next</a>
-		                {% endif %}
-		            </span>
-		        </div>
-	        </div>
-	    {% else %}
-	        <p>No posts yet.</p>
-	    {% endif %}
-
+		    {% else %}
+		        <p>No Notices</p>
+		    {% endif %}
 	    </div>
 
 	</div>

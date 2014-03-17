@@ -4,6 +4,7 @@
 	font-family: "Roboto", sans serif;
 	padding: 0; margin: 0;
 	box-sizing: border-box;
+	font-weight: 300;
 }
 
 /* HEADER */
@@ -34,6 +35,16 @@
 	width:70%;
 	margin: 0 auto !important;
 	padding: 2em !important;
+}
+
+/* Pagination styles */
+
+.pagination {
+	margin: 1em !important;
+}
+
+.step-links {
+	text-align: center;
 }
 
 /* Miscellaneous and helpers */

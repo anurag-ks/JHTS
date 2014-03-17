@@ -77,7 +77,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.contrib.messages.context_processors.messages",
     "JHTS.context_processor.list_pages",
-    "JHTS.context_processor.list_images",
 )
 
 # Internationalization

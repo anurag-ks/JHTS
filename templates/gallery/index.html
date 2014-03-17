@@ -4,76 +4,88 @@
 {% block gallery_active %}active{% endblock %}
 
 {% block custom_css %}
-	#pic_holder{
-		width:55%;
-	}
 	#text_holder{
 		width:21%;
 	}
 {% endblock %}
+
 {% block content %}
 
-<h1 class="ui dividing header">
-Gallery
-{% if user.is_authenticated %}
-	<a class="right floated small ui green button" href="{% url 'upload' %}">
-	<i class="ui small icon plus"></i>
-	Add a Photo
-	</a>
-{% endif %}
-</h1>
-<br>
-<!-- Todo : Implement this slide show in the home page.
-<div class="cycle-slideshow"
-    data-cycle-fx="tileSlide"
-    data-cycle-timeout="0"
-    data-cycle-prev="#prev"
-    data-cycle-next="#next">
-{% for img in gallery_images %}
-	<img src="{{ img.image.url }}" alt="{{ img.description | truncatewords:10 | safe }}[ See More]">
-{% endfor %}
-</div>
-<div style="text-align:center;">
-    <a href=# id="prev" class="normal-link">Prev</a> 
-    <a href=# id="next" class="normal-link">Next</a>
-</div> -->
-
-{% if gallery_images %}
-	{% for img in gallery_images %}
-		<div class="ui blue raised segment" id = "pic_holder">
-			<a href="{% url 'gallery.views.detail' img.id %}">
-				<img src="{{ img.image.url }}"  alt="{{ img.description }}" class="rounded ui large image">
-				<div class="ui teal ribbon label">{{ img.description | truncatewords:10 | safe }}[ See More]</div>
+	<h1 class="ui dividing header">
+		Gallery
+		{% if user.is_superuser %}
+			<a class="right floated small ui green button" href="{% url 'upload' %}">
+			<i class="ui small icon plus"></i>
+			Add a Photo
 			</a>
+		{% endif %}
+	</h1>
+	<br>
+
+	<!-- <div class="cycle-slideshow"
+	    data-cycle-fx="tileSlide"
+	    data-cycle-timeout="0"
+	    data-cycle-prev="#prev"
+	    data-cycle-next="#next">
+		{% for img in gallery_images %}
+			<img src="{{ img.image.url }}" alt="{{ img.description | truncatewords:10 | safe }}">
+		{% endfor %}
+	</div>
+	<div style="text-align:center;">
+	    <a href="#" id="prev" class="ui basic button">Prev</a> 
+	    <a href="#" id="next" class="ui basic button">Next</a>
+	</div> -->
+
+	{% if gallery_images %}
+		<div class="ui three column grid">
+			{% for img in gallery_images %}
+				{% cycle '<div class="row">' '' '' %}
+				<div class="column">
+					<div class="ui blue attached raised segment">
+						<a href="{% url 'gallery.views.detail' img.id %}">
+							<img src="{{ img.image.url }}"  alt="{{ img.description }}" class="rounded ui large image">
+						</a>
+					</div>
+					<div class="ui teal bottom attached message">
+						{{ img.description | truncatewords:10 | safe }}
+					</div>
+				</div>
+				{% cycle '' '' '</div>' %}
+			{% endfor %}
 		</div>
-		<br>
-	{% endfor %}
-	<div class="pagination">
-            <span class="step-links">
-                {% if gallery_images.has_previous %}
-                    <a href="?page={{ gallery_images.previous_page_number }}" class="ui blue button">Previous</a>
-                {% else %}
-                    <a href="#" class="ui blue disabled button">Previous</a>
-                {% endif %}
 
-                <span class="current">
-                    Page {{ gallery_images.number }} of {{ gallery_images.paginator.num_pages }}
-                </span>
+		<div class="pagination">
+			<center>
+		        <span class="step-links">
+		            {% if gallery_images.has_previous %}
+		                <a href="?page={{ gallery_images.previous_page_number }}" class="ui blue button">Previous</a>
+		            {% else %}
+		                <a href="#" class="ui blue disabled button">Previous</a>
+		            {% endif %}
 
-                {% if gallery_images.has_next %}
-                    <a href="?page={{ gallery_images.next_page_number }}" class="ui blue button">Next</a>
-                {% else %}
-                    <a href="#" class="ui blue disabled button">Next</a>
-                {% endif %}
-            </span>
-	</div>
+		            <span class="current">
+		                Page {{ gallery_images.number }} of {{ gallery_images.paginator.num_pages }}
+		            </span>
 
-{% else %}
-	<div id="text_holder">
-		<p>No Images to display</p>		
-	</div>
-{% endif %}
+		            {% if gallery_images.has_next %}
+		                <a href="?page={{ gallery_images.next_page_number }}" class="ui blue button">Next</a>
+		            {% else %}
+		                <a href="#" class="ui blue disabled button">Next</a>
+		            {% endif %}
+		        </span>
+	        </center>
+		</div>
 
+	{% else %}
+		<div id="text_holder">
+			<p>No Images to display</p>		
+		</div>
+	{% endif %}
 {% endblock%} 
 
+{% block custom_js_includes %}
+	{% load static %}
+	<script src="{% static 'blog/js/jquery.cycle2.min.js' %}"></script>
+    <script src="{% static 'blog/js/jquery.cycle2.caption2.min.js' %}"></script>
+{% endblock %}
 

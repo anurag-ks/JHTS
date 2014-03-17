@@ -82,6 +82,3 @@ def create(request, template_name='main/form.html'):
     else:
         messages.success(request, 'You are not authorized')
         return redirect('index')
-
-# -----------------------------------------------------------------------
-

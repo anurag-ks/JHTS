@@ -1,26 +1,21 @@
-from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.core.paginator import *
 from django.contrib.auth.decorators import login_required
+
 from blog.models import Blog
 from pages.models import Page
+from gallery.models import GalleryPhoto
 from pages.forms import PageForm
 
 
 def index(request):
-    post_list = Blog.objects.all().order_by('-pub_date')
-    paginator = Paginator(post_list, 5)
-    page = request.GET.get('page')
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        posts = paginator.page(1)
-    except EmptyPage:
-        posts = paginator.page(1)
+    post_list = Blog.objects.all().order_by('-pub_date')[:5]
+    images = GalleryPhoto.objects.all()[:5]
 
     return render(request, 'pages/index.html', {
-        'posts': posts
+        'posts': post_list,
+        'images': images
         })
 
 
