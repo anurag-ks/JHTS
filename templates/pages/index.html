@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block body %}
 <div class="ui sixteen column divided page grid">
 	<div class="eight wide column">
@@ -20,7 +19,7 @@
 				            <p>
 				            	{{ post.content | truncatewords:33 | safe }}
 				            </p>
-				            <a href="{% url 'blog.views.detail' post.id %}" class="ui small basic button">Read More</a>
+				            <a href="{% url 'blog.views.detail' post.id %}" class="ui small basic button">[Read More]</a>
 				        </div>
 			        {% endfor %}
 			        <a href="{% url 'blog.views.index' %}" class="ui basic fluid button">
