@@ -23,6 +23,21 @@ Gallery
 {% endif %}
 </h1>
 <br>
+<!-- Todo : Implement this slide show in the home page.
+<div class="cycle-slideshow"
+    data-cycle-fx="tileSlide"
+    data-cycle-timeout="0"
+    data-cycle-prev="#prev"
+    data-cycle-next="#next">
+{% for img in gallery_images %}
+	<img src="{{ img.image.url }}" alt="{{ img.description | truncatewords:10 | safe }}[ See More]">
+{% endfor %}
+</div>
+<div style="text-align:center;">
+    <a href=# id="prev" class="normal-link">Prev</a> 
+    <a href=# id="next" class="normal-link">Next</a>
+</div> -->
+
 {% if gallery_images %}
 	{% for img in gallery_images %}
 		<div class="ui blue raised segment" id = "pic_holder">
@@ -59,5 +74,6 @@ Gallery
 	</div>
 {% endif %}
 
-{% endblock%}
+{% endblock%} 
+
 
