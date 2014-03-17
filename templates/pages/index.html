@@ -55,9 +55,11 @@
 			    data-cycle-fx="tileSlide"
 			    data-cycle-timeout="0"
 			    data-cycle-prev="#prev"
-			    data-cycle-next="#next">
+			    data-cycle-next="#next"
+			    data-cycle-caption-plugin=caption2 >
+			<div class="cycle-caption"></div>
 			{% for img in images %}
-				<img src="{{ img.image.url }}" class="circular ui image" alt="{{ img.description | truncatewords:10 | safe }}">
+				<img src="{{ img.image.url }}" data-cycle-title="{{ img.description }}">
 			{% endfor %}
 			</div>
 			<div id="custom-caption" class="ui horizontal divider">
