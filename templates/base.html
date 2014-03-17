@@ -45,10 +45,13 @@
                     <i class="photo icon"></i> Gallery
                 </a>
                 {% for page in pages %}
-                <a href="/{{ page.url }}" class = "item">
-                    {{page.title}}
-                </a>
+                    {% if page.show_in_navbar %}
+                        <a href="/{{ page.url }}" class = "item">
+                        {{page.title}}
+                        </a>
+                    {% endif%}
                 {% endfor %}
+
                 <div class="right menu">
                     <div class="item">
                         <div class="ui icon input">
