@@ -1,27 +1,20 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.models import User
-from django import forms
+from forms import UserCreateForm
+from django.contrib import auth
 
 
-class UserCreateForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-
-    class Meta:
-        model = User
-        fields = ("username", "email", "password1", "password2")
-
-    def save(self, commit=True):
-        user = super(UserCreateForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
+# A beatiful hack :)
+def login(request):
+    if request.user.is_authenticated():
+        messages.warning(request, 'Don\'t fuck with me.')
+        return redirect('/')
+    else:
+        return auth.views.login(request)
 
 
 def signup(request, template_name="registration/signup.html"):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         messages.warning(request, 'Logout to create a new user')
         return redirect('/')
     else:

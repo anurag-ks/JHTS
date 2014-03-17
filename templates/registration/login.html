@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if user.is_authenticated %}
-<div class="ui error message">
-    <div class="header">Error</div>
-    <p>Did you just tried to login while already logged in !!! </p>
-    <p>Please go back</p>
-</div>
-{% else %}
-    {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
+    {% if user.is_authenticated %}
+        <div class="ui error message">
+            <div class="header">Error</div>
+            <p>Did you just tried to login while already logged in !!! </p>
+            <p>Please go back</p>
+        </div>
+    {% else %}
+        {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
         {% endif %}
-        <form action="{% url 'django.contrib.auth.views.login' %}" method="POST"> 
+        <form action="{% url 'JHTS.views.login' %}" method="POST"> 
         	{% csrf_token %}
             <table cellpadding="10" cellspacing="10">
                 <tr>
@@ -33,5 +33,5 @@
             </table>
         	<button type="submit" name="submit" class="ui button green">Sign in</button>
     	</form>
-{% endif %}
+    {% endif %}
 {% endblock %}
