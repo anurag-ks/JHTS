@@ -61,6 +61,34 @@
 			<iframe src="https://www.google.com/calendar/embed?src=9fgcb1hoacoiiijh7kkbcfhnkc%40group.calendar.google.com&ctz=Asia/Calcutta" style="border: 0" width="500" height="375" frameborder="0" scrolling="no"></iframe>
 		</div>
 	</div>
-
 </div>
+<!-- Still working on it -->
+{% if images %}
+<div class="ui sixteen column divided page grid">
+	<div class="eight wide column">
+		<div class="ui segement">
+				<h2 class="ui dividing header">
+					From our Gallery
+				</h2>
+			<div class="cycle-slideshow"
+			    data-cycle-fx="tileSlide"
+			    data-cycle-timeout="0"
+			    data-cycle-prev="#prev"
+			    data-cycle-next="#next">
+			{% for img in images %}
+				<img src="{{ img.image.url }}" class="circular ui image" alt="{{ img.description | truncatewords:10 | safe }}">
+			{% endfor %}
+			</div>
+			<div id="custom-caption" class="ui horizontal divider">
+				Slider
+			</div>
+			<div style="text-align:center;">
+			    <a href=# id="prev" class="ui teal button">Prev</a> 
+			    <a href=# id="next" class="ui teal button">Next</a>
+			</div>
+			
+		</div>
+	</div>
+</div>
+{% endif %}
 {% endblock %}
