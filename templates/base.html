@@ -47,7 +47,7 @@
                 {% for page in pages %}
                     {% if page.show_in_navbar %}
                         <a href="{% url 'pages.views.controller' page.url %}" class = "item">
-                        {{page.title}}
+                            {{page.title}}
                         </a>
                     {% endif %}
                 {% endfor %}
