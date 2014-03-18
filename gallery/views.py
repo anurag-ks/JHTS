@@ -3,7 +3,7 @@ from django.contrib import messages
 from gallery.models import GalleryPhoto
 from django.core.paginator import *
 from forms import GalleryForm
-from JHTS.settings import POSTS_PER_PAGE
+from JHTS.settings import IMAGES_PER_PAGE
 from django.contrib.auth.decorators import login_required
 
 
@@ -12,7 +12,7 @@ def index(request):
         Index view for the Gallery.
     """
     images = GalleryPhoto.objects.all()
-    paginator = Paginator(images, POSTS_PER_PAGE)
+    paginator = Paginator(images, IMAGES_PER_PAGE)
     page = request.GET.get('page')
     try:
         images = paginator.page(page)

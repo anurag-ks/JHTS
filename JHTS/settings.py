@@ -113,6 +113,10 @@ CKEDITOR_CONFIGS = {
 
 POSTS_PER_PAGE = 5
 
+# Gallery config
+
+IMAGES_PER_PAGE = 6
+
 # Login setting
 
 LOGIN_URL = '/login/'
