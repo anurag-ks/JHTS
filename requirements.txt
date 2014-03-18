@@ -2,3 +2,6 @@ Django == 1.6
 django-ckeditor-updated
 django-taggit
 django-resized
+PIL
+haystack
+whoosh
