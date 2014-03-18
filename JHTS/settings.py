@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'blog',
     'pages',
     'gallery',
+    'haystack',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -124,3 +125,13 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 DJANGORESIZED_DEFAULT_SIZE = [800, 600]
+
+# Haystack Config
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

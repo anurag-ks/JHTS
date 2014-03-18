@@ -12,6 +12,7 @@ urlpatterns = patterns(
     url(r'^signup/$', 'JHTS.views.signup'),
     url(r'^login/$', 'JHTS.views.login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+    url(r'^search/', include('haystack.urls')),
     url(r'^ckeditor/', include('ckeditor.urls')),
 )+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
