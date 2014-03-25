@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from forms import UserCreateForm
-from django.contrib import auth
+from django.contrib.auth import views as auth_views
 
 
 # A beatiful hack :)
@@ -10,7 +10,7 @@ def login(request):
         messages.warning(request, 'Don\'t fuck with me.')
         return redirect('/')
     else:
-        return auth.views.login(request)
+        return auth_views.login(request)
 
 
 def signup(request, template_name="registration/signup.html"):
