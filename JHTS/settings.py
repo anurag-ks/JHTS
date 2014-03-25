@@ -35,8 +35,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'django.contrib.comments',
     'ckeditor',
     'taggit',
     'blog',
@@ -127,8 +125,3 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Resizing config
 DJANGORESIZED_DEFAULT_SIZE = [800, 600]
-
-# Django comments config
-COMMENT_MAX_LENGTH = 144
-
-SITE_ID = 1
