@@ -23,6 +23,16 @@ def index(request):
     return render(request, 'main/index.html', {'posts': posts})
 
 
+def tag_filter(request, tag):
+    '''
+        This view requires a nice form.
+        At this moment it can be tested by manually typing in the url.
+    '''
+    tag.lower()
+    results = Blog.objects.filter(tags__name__in=[tag])
+    return render(request, 'main/filter.html', {'results': results})
+
+
 def detail(request, blog_id):
     """
         View for a single blog post.

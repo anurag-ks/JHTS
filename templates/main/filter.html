@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p class="ui header">Results :</p>
+<div class="ui segment">
+	{% for post in results %}
+	<a href="{% url 'blog.views.detail' post.id %}" class="ui link">{{post.title}}</p>
+	{% endfor %}
+</div>
+{% endblock %}

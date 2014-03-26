@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load comments %}
+
 {% block home_active %}{% endblock %}
 {% block notice_board_active %}active{% endblock %}
 
@@ -52,17 +52,9 @@
         {% endif %}
     </h2>
 
-    <div class="ui segment attached">
+    <div class="ui segment">
     	{{ post.content|safe }}
         <br>
-        <div class="ui bottom left attached label">
-            <i class="tags icon"></i>
-            {% for tag in post.tags.all %}
-                <ul id="tags">
-                    <li>{{ tag.name }}</li>
-                </ul>
-            {% endfor %}
-        </div>
         <div class="ui bottom right attached label">
             <i class="calendar icon"></i>
             {{ post.pub_date }}
