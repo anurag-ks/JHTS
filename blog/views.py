@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from blog.models import Blog
+from blog.models import Blog, Comment
 from django.core.paginator import *
-from forms import BlogForm
+from forms import BlogForm, CommentForm
 from JHTS.settings import POSTS_PER_PAGE
 from django.contrib.auth.decorators import login_required
 
@@ -21,6 +21,20 @@ def index(request):
     except EmptyPage:
         posts = paginator.page(1)
     return render(request, 'main/index.html', {'posts': posts})
+
+
+def add_comment(request, blog_id):
+    form = CommentForm(request.POST)
+    post = get_object_or_404(Blog, pk=blog_id)
+    if form.is_valid():
+        author = form.cleaned_data['author']
+        content = form.cleaned_data['content']
+        new_comment = Comment(id=None, author=author, content=content,
+                              post_id=post)
+        new_comment.save()
+        messages.success(request, "Comment has been added.")
+        return redirect('detail', blog_id=blog_id)
+    return render(request, "main/form.html", {'form': form})
 
 
 def tag_filter(request, tag):

@@ -25,7 +25,7 @@
             </button>
 
             <a href="{% url 'blog.views.update' post.id %}" class="right floated small ui green button">Update</a>
-
+            <a href="{% url 'blog.views.add_comment' post.id %}" class="right floated small ui green button">Add a comment</a>
             <!-- Modal code -->
 
             <div class="ui small modal">
@@ -59,6 +59,17 @@
             <i class="calendar icon"></i>
             {{ post.pub_date }}
         </div>
+    </div>
+    <div class="ui segment">
+    {% for comment in post.comment_set.all %}
+        <p>{{comment.content}}</p>
+        by
+        <p>{{comment.author}}</p>
+        punlished on
+        <p>{{comment.publish_date}}</p>
+        <hr>
+    {% endfor %}
+
     </div>
 
 
