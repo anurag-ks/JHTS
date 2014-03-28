@@ -34,7 +34,7 @@ def add_comment(request, blog_id):
         new_comment.save()
         messages.success(request, "Comment has been added.")
         return redirect('detail', blog_id=blog_id)
-    return render(request, "main/form.html", {'form': form})
+    return render(request, "main/comment_form.html", {'form': form})
 
 
 def tag_filter(request, tag):

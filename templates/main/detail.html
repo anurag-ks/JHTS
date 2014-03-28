@@ -25,7 +25,7 @@
             </button>
 
             <a href="{% url 'blog.views.update' post.id %}" class="right floated small ui green button">Update</a>
-            <a href="{% url 'blog.views.add_comment' post.id %}" class="right floated small ui green button">Add a comment</a>
+
             <!-- Modal code -->
 
             <div class="ui small modal">
@@ -60,16 +60,38 @@
             {{ post.pub_date }}
         </div>
     </div>
-    <div class="ui segment">
-    {% for comment in post.comment_set.all %}
-        <p>{{comment.content}}</p>
-        by
-        <p>{{comment.author}}</p>
-        punlished on
-        <p>{{comment.publish_date}}</p>
-        <hr>
-    {% endfor %}
+    <div class="ui two column grid">
+        <div class="column">
+            <div class="ui blue pilled segment">
+                <h2 class="ui header">
+                    <i class="icon inverted circular blue comment"></i> Comments
+                </h2>
+                <div class="ui comments">
+                    {% if post.comment_set.all %}
+                        {% for comment in post.comment_set.all %}
+                        <div class="comment ui blue floating message">
+                            <a class="author">{{ comment.author }}, said :</a>
+                            <div class="text">
+                                {{ comment.content }}
+                            </div> 
+                            <div class="date"> On, {{ comment.publish_date }}</div>
+                        </div>
+                        {% endfor %}
 
+                    {% else %}
+                        <div class="comment">
+                            <p>No one has commented yet, 
+                             be the first one to do it</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <a class="normal-link" href="{% url 'blog.views.add_comment' post.id %}" >
+            <div class="ui fluid blue labeled submit icon button">
+                <i class="icon edit"></i>Add a Comment
+            </div>
+            </a>
+        </div>
     </div>
 
 
