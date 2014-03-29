@@ -32,3 +32,5 @@ Repo Owners
 Notes
 =====
 * We like suggestion from people but still don't tell us to change the whole UI system or change the framework or    something like that.
+* "Let me be a little clearer on the website vision. Our website doesn't need all the bells and whistles. What I would want is a website which does twenty things beautifully, not a thousand things uselessly. I don't want our website to be the Iron Patriot(showy and somewhat cool), but I want it to be the Iron Man(not as showy, but cooler). All the bells and whistles are subtle, yet totally awesome." - <a href="https://github.com/svineet">Sai Vineet</a> <br> 
+[ That explains all that we need guys  ;-) ]
