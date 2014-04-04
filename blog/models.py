@@ -5,7 +5,7 @@ from taggit.managers import TaggableManager
 
 class Blog(models.Model):
     title = models.CharField(max_length=50)
-    pub_date = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateField(auto_now_add=True)
     content = RichTextField()
     tags = TaggableManager()
 
@@ -17,7 +17,7 @@ class Comment(models.Model):
     post_id = models.ForeignKey(Blog)
     author = models.CharField(max_length=50)
     content = models.TextField()
-    publish_date = models.DateTimeField(auto_now_add=True)
+    publish_date = models.DateField(auto_now_add=True)
 
     def __unicode__(self):
         return self.content

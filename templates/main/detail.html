@@ -19,7 +19,7 @@
     <h2 class="ui dividing header">
       	{{ post.title }}
 
-        {% if user.is_authenticated %}
+        {% if user.is_superuser %}
             <button class="right floated small ui red button delete-button">
                 Delete
             </button>
@@ -69,12 +69,17 @@
                 <div class="ui comments">
                     {% if post.comment_set.all %}
                         {% for comment in post.comment_set.all %}
-                        <div class="comment ui blue floating message">
+                        <div class="comment ui message">
                             <a class="author">{{ comment.author }}, said :</a>
                             <div class="text">
                                 {{ comment.content }}
                             </div> 
                             <div class="date"> On, {{ comment.publish_date }}</div>
+                            {% if user.is_superuser %}
+                                <a href="{% url 'blog.views.delete_comment' comment.id %}" class="ui normal-link">
+                                    <i class="close icon"></i>
+                                </a>
+                            {% endif %}
                         </div>
                         {% endfor %}
 

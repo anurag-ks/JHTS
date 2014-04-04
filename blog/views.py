@@ -23,20 +23,6 @@ def index(request):
     return render(request, 'main/index.html', {'posts': posts})
 
 
-def add_comment(request, blog_id):
-    form = CommentForm(request.POST)
-    post = get_object_or_404(Blog, pk=blog_id)
-    if form.is_valid():
-        author = form.cleaned_data['author']
-        content = form.cleaned_data['content']
-        new_comment = Comment(id=None, author=author, content=content,
-                              post_id=post)
-        new_comment.save()
-        messages.success(request, "Comment has been added.")
-        return redirect('detail', blog_id=blog_id)
-    return render(request, "main/comment_form.html", {'form': form})
-
-
 def tag_filter(request, tag):
     '''
         This view requires a nice form.
@@ -103,6 +89,34 @@ def create(request, template_name='main/form.html'):
             messages.success(request, 'Post has been created')
             return redirect('index')
         return render(request, template_name, {'form': form})
+    else:
+        messages.success(request, 'You are not authorized')
+        return redirect('index')
+
+# Comments FrameWork :
+
+
+def add_comment(request, blog_id):
+    form = CommentForm(request.POST)
+    post = get_object_or_404(Blog, pk=blog_id)
+    if form.is_valid():
+        author = form.cleaned_data['author']
+        content = form.cleaned_data['content']
+        new_comment = Comment(id=None, author=author, content=content,
+                              post_id=post)
+        new_comment.save()
+        messages.success(request, "Comment has been added.")
+        return redirect('detail', blog_id=blog_id)
+    return render(request, "main/comment_form.html", {'form': form})
+
+
+def delete_comment(request, comment_id):
+    if request.user.is_superuser:
+        comment = get_object_or_404(Comment, pk=comment_id)
+        blog_id = comment.post_id.id
+        comment.delete()
+        messages.success(request, 'Comment has been deleted')
+        return redirect('detail', blog_id=blog_id)
     else:
         messages.success(request, 'You are not authorized')
         return redirect('index')
