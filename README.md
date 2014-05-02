@@ -37,3 +37,4 @@ Notes
 
 ====
 Development has been stalled.
+This website died along with Ned Stark, Robb Stark, and Catelyn Stark.
