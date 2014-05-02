@@ -1,17 +1,22 @@
 JHTS
 ====
 
-This is a Django based CMS for our school site for our school J.H.Tarapore .
+This was a Django based CMS for our school site for our school J.H.Tarapore .
 
 How to contribute
 =================
 
+/*
 <ul>
   <li>Fork this repo.
   <li>Clone the forked repo.
   <li>Do your changes and then push the code to <b>your repo</b>.
   <li>Send a pull request
 </ul>
+*/
+
+New:
+- Watch Season 4.
 
 Conventions
 ===========
